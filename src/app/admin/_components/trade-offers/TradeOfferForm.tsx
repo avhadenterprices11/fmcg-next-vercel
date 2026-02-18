@@ -33,7 +33,7 @@ import { TagsInput } from "@/components/ui/tags-input";
 
 import ImageUpload from "@/components/ui/image-upload";
 import { tradeOfferSchema, TradeOfferFormValues } from "./schema";
-import { PageHeader } from "../PageHeader";
+import { PageHeader, type BreadcrumbItem } from "../PageHeader";
 
 interface TradeOfferFormProps {
     initialData?: TradeOfferFormValues & { _id?: string };

@@ -264,7 +264,7 @@ export default function HeroBannersClient({ initialData }: HeroBannersClientProp
                 totalItems={filteredData.length}
                 onPageChange={setPage}
                 onRowsPerPageChange={(r) => { setRowsPerPage(r); setPage(1); }}
-                getRowId={(row) => row._id as string}
+                getRowId={(row) => String(row._id)}
                 columns={columns}
                 selectable={true}
                 selectionMode="multiple"

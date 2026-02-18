@@ -111,8 +111,12 @@ export default function ImageUpload({ value, onChange, disabled }: ImageUploadPr
             });
 
             console.log("Upload success:", uploadResponse);
-            onChange(uploadResponse.url);
-            toast.success("Image uploaded successfully");
+            if (uploadResponse.url) {
+                onChange(uploadResponse.url);
+                toast.success("Image uploaded successfully");
+            } else {
+                toast.error("Upload failed: No URL returned");
+            }
 
         } catch (error: any) {
             console.error("Upload error:", error);

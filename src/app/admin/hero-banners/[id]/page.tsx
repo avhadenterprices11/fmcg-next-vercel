@@ -13,7 +13,7 @@ export default async function EditHeroBannerPage({ params }: { params: Promise<{
 
     return (
         <div className="flex-1 space-y-4">
-            <HeroBannerForm initialData={response.data} />
+            <HeroBannerForm initialData={response.data as any} />
         </div>
     );
 }

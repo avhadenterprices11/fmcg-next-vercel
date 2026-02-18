@@ -40,27 +40,25 @@ export function Sidebar({
       ============================================================ */
 
     const activeMenuId = React.useMemo(() => {
-        let bestMatch: { id: string; length: number } | null = null;
+        let bestId = "dashboard";
+        let maxLength = -1;
 
-        const checkItem = (item: NavItem) => {
-            if (item.path && (pathname === item.path || pathname.startsWith(item.path + "/"))) {
-                const len = item.path.length;
-                if (!bestMatch || len > bestMatch.length) {
-                    bestMatch = { id: item.id, length: len };
+        const traverse = (items: NavItem[]) => {
+            for (const item of items) {
+                if (item.path && (pathname === item.path || pathname.startsWith(item.path + "/"))) {
+                    const len = item.path.length;
+                    if (len > maxLength) {
+                        maxLength = len;
+                        bestId = item.id;
+                    }
                 }
-            }
-            if (item.submenu) {
-                item.submenu.forEach(checkItem);
+                if (item.submenu) traverse(item.submenu);
             }
         };
 
-        NAV_ITEMS.forEach(checkItem);
+        traverse(NAV_ITEMS);
 
-        // Fallback or explicit check for exact root? 
-        // If we are exactly at /admin, bestMatch will be dashboard.
-        // If we are at /admin/unknown, bestMatch will be dashboard (shortest match).
-
-        return bestMatch?.id ?? "dashboard";
+        return bestId;
     }, [pathname]);
 
     /* Auto-expand parent when child is active */

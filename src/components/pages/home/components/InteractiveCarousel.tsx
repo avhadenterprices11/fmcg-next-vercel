@@ -231,7 +231,7 @@ export function InteractiveCarousel({ cards }: InteractiveCarouselProps) {
 
                         return (
                             <motion.div
-                                key={card._id as string}
+                                key={String(card._id)}
                                 className="absolute" // Removed cursor-pointer here to avoid conflict, relying on parent grab
                                 style={{
                                     width: dimensions.width,
