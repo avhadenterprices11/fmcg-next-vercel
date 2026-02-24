@@ -21,9 +21,9 @@ export const CATEGORIES: CategoryTier1[] = [
                 image: '/categories/Spirits/Scotch Whisky.png',
                 description: 'Aged grain spirit distilled in oak casks.',
                 tier3: [
-                    { id: 'scotch', name: 'Scotch', image: '/categories/Spirits/Scotch Whisky.png', description: 'Whisky made in Scotland.' },
-                    { id: 'irish', name: 'Irish', image: '/categories/Spirits/Jameson Irish Whiskey.webp', description: 'Smooth, triple-distilled whiskey from Ireland.' },
-                    { id: 'american', name: 'American', image: '/categories/Spirits/Jim beam amwrican whicsky.jpg', description: 'Bourbon and Rye whiskies from the USA.' },
+                    { id: 'scotch', name: 'Scotch', image: '/categories/Johnnie Walker Black  Label Scotch Whisky.webp', description: 'Whisky made in Scotland.' },
+                    { id: 'irish', name: 'Irish', image: '/categories/Jameson Irish Whiskey.webp', description: 'Smooth, triple-distilled whiskey from Ireland.' },
+                    { id: 'american', name: 'American', image: '/categories/Jack Daniels Tennessee  American Whiskey.webp', description: 'Bourbon and Rye whiskies from the USA.' },
                     { id: 'japanese', name: 'Japanese', image: '/categories/Spirits/Hibiki japnees Whisky.jpg', description: 'Precision-crafted whiskies from Japan.' },
                     { id: 'world-whisky', name: 'World Whisky', image: '/categories/Spirits/World Whiskyy.jpg', description: 'Emerging whisky regions including Australia and Taiwan.' }
                 ]
@@ -35,7 +35,7 @@ export const CATEGORIES: CategoryTier1[] = [
                 description: 'Clear, distilled spirit known for its purity.',
                 tier3: [
                     { id: 'plain-vodka', name: 'Plain', image: '/categories/Spirits/Vodka/plain Vodka.webp', description: 'Unflavoured, pure vodka.' },
-                    { id: 'flavoured-vodka', name: 'Flavoured', image: '/categories/Spirits/Vodka/Aperol Flavoured Liqueurs.webp', description: 'Infused with fruits, herbs, or spices.' }
+                    { id: 'flavoured-vodka', name: 'Flavoured', image: '/categories/Aperol Flavoured Liqueurs.webp', description: 'Infused with fruits, herbs, or spices.' }
                 ]
             },
             {
@@ -45,7 +45,7 @@ export const CATEGORIES: CategoryTier1[] = [
                 description: 'Made from sugarcane molasses or juice.',
                 tier3: [
                     { id: 'white-rum', name: 'White', image: '/categories/Spirits/Rum/White Rm.jpg', description: 'Clear rum, often used in cocktails.' },
-                    { id: 'spiced-rum', name: 'Spiced', image: '/categories/Spirits/Rum/Spiced rum.jpg', description: 'Flavoured with spices and caramel.' },
+                    { id: 'spiced-rum', name: 'Spiced', image: '/categories/Captain Morgan Spiced Rum.jpg', description: 'Flavoured with spices and caramel.' },
                     { id: 'aged-rum', name: 'Aged & Dark', image: '/categories/Spirits/Rum/Gold rum.webp', description: 'Matured in barrels for complexity.' }
                 ]
             },
@@ -55,9 +55,9 @@ export const CATEGORIES: CategoryTier1[] = [
                 image: '/categories/Live Trade Opportunities/Hendricks London Dry Gin.webp',
                 description: 'Distilled spirit with juniper berry flavour.',
                 tier3: [
-                    { id: 'london-dry', name: 'London Dry', image: '/categories/Live Trade Opportunities/Hendricks London Dry Gin.webp', description: 'Classic, juniper-forward style.' },
-                    { id: 'flavoured-gin', name: 'Flavoured & Pink', image: '/categories/Live Trade Opportunities/Hendricks London Dry Gin.webp', description: 'Infused with fruit for colour and taste.' },
-                    { id: 'craft-gin', name: 'Craft Gin', image: '/categories/Live Trade Opportunities/Hendricks London Dry Gin.webp', description: 'Small-batch artisanal gins.' }
+                    { id: 'london-dry', name: 'London Dry', image: '/categories/Hendricks London Dry Gin.webp', description: 'Classic, juniper-forward style.' },
+                    { id: 'flavoured-gin', name: 'Flavoured & Pink', image: '/categories/Hendricks London Dry Gin.webp', description: 'Infused with fruit for colour and taste.' },
+                    { id: 'craft-gin', name: 'Craft Gin', image: '/categories/Hendricks London Dry Gin.webp', description: 'Small-batch artisanal gins.' }
                 ]
             },
             {
@@ -87,9 +87,9 @@ export const CATEGORIES: CategoryTier1[] = [
                 image: '/categories/Spirits/Whisky liQUEUR.jpeg',
                 description: 'Sweetened spirits with various flavours.',
                 tier3: [
-                    { id: 'amaretto', name: 'Amaretto', image: '/categories/Spirits/Whisky liQUEUR.jpeg', description: 'Almond-flavoured Italian liqueur.' },
-                    { id: 'cream-liqueur', name: 'Cream Liqueur', image: '/categories/Spirits/Whisky liQUEUR.jpeg', description: 'Liqueur with dairy cream.' },
-                    { id: 'herbal-liqueur', name: 'Herbal', image: '/categories/Spirits/Whisky liQUEUR.jpeg', description: 'Liqueur flavoured with herbs.' }
+                    { id: 'amaretto', name: 'Amaretto', image: '/categories/Aperol Flavoured Liqueurs.webp', description: 'Almond-flavoured Italian liqueur.' },
+                    { id: 'cream-liqueur', name: 'Cream Liqueur', image: '/categories/Baileys Irish Cream Liqueur.jpg', description: 'Liqueur with dairy cream.' },
+                    { id: 'herbal-liqueur', name: 'Herbal', image: '/categories/Jägermeister Liqueur.jpg', description: 'Liqueur flavoured with herbs.' }
                 ]
             }
         ]
@@ -109,10 +109,10 @@ export const CATEGORIES: CategoryTier1[] = [
                 image: '/categories/Live Trade Opportunities/Wine.webp',
                 description: 'Wine made from dark-coloured grape varieties.',
                 tier3: [
-                    { id: 'malbec', name: 'Malbec', image: '/categories/Live Trade Opportunities/Wine.webp', description: 'Full-bodied red wine.' },
-                    { id: 'cabernet-sauvignon', name: 'Cabernet Sauvignon', image: '/categories/Live Trade Opportunities/Wine.webp', description: 'Popular, bold red wine.' },
-                    { id: 'chianti', name: 'Chianti / Sangiovese', image: '/categories/Live Trade Opportunities/Wine.webp', description: 'Italian red wine.' },
-                    { id: 'pinot-noir', name: 'Pinot Noir', image: '/categories/Live Trade Opportunities/Wine.webp', description: 'Light-bodied red wine.' }
+                    { id: 'malbec', name: 'Malbec', image: '/categories/Wine & Champagne/REd Wine.webp', description: 'Full-bodied red wine.' },
+                    { id: 'cabernet-sauvignon', name: 'Cabernet Sauvignon', image: '/categories/Wine & Champagne/REd Wine.webp', description: 'Popular, bold red wine.' },
+                    { id: 'chianti', name: 'Chianti / Sangiovese', image: '/categories/Wine & Champagne/REd Wine.webp', description: 'Italian red wine.' },
+                    { id: 'pinot-noir', name: 'Pinot Noir', image: '/categories/Wine & Champagne/REd Wine.webp', description: 'Light-bodied red wine.' }
                 ]
             },
             {
@@ -121,9 +121,9 @@ export const CATEGORIES: CategoryTier1[] = [
                 image: '/categories/Live Trade Opportunities/Wine.webp',
                 description: 'Wine produced without grape skin contact.',
                 tier3: [
-                    { id: 'sauvignon-blanc', name: 'Sauvignon Blanc', image: '/categories/Live Trade Opportunities/Wine.webp', description: 'Crisp, acidic white wine.' },
-                    { id: 'chardonnay', name: 'Chardonnay', image: '/categories/Live Trade Opportunities/Wine.webp', description: 'Versatile white wine.' },
-                    { id: 'pinot-grigio', name: 'Pinot Grigio', image: '/categories/Live Trade Opportunities/Wine.webp', description: 'Light, zest white wine.' }
+                    { id: 'sauvignon-blanc', name: 'Sauvignon Blanc', image: '/categories/Wine & Champagne/Sauvignon Blanco.webp', description: 'Crisp, acidic white wine.' },
+                    { id: 'chardonnay', name: 'Chardonnay', image: '/categories/Wine & Champagne/white wine.jpg', description: 'Versatile white wine.' },
+                    { id: 'pinot-grigio', name: 'Pinot Grigio', image: '/categories/Wine & Champagne/Pinot Grigio.webp', description: 'Light, zest white wine.' }
                 ]
             },
             {
@@ -141,7 +141,7 @@ export const CATEGORIES: CategoryTier1[] = [
                 image: '/categories/Champagne & Sparkling/Sparkling Wine.webp',
                 description: 'Carbonated wine.',
                 tier3: [
-                    { id: 'champagne', name: 'Champagne', image: '/categories/Champagne & Sparkling/Champagne.jpg', description: 'French sparkling wine.' },
+                    { id: 'champagne', name: 'Champagne', image: '/categories/Veuve Clicquot GB Champagne.webp', description: 'French sparkling wine.' },
                     { id: 'prosecco', name: 'Prosecco', image: '/categories/Champagne & Sparkling/Sparkling Wine.webp', description: 'Italian sparkling wine.' },
                     { id: 'cava', name: 'Cava', image: '/categories/Champagne & Sparkling/Sparkling Wine.webp', description: 'Spanish sparkling wine.' }
                 ]
@@ -241,11 +241,11 @@ export const BRANDS: Brand[] = [
         country: 'Scotland',
         countryCode: 'scotland',
         positioning: 'Premium Export',
-        image: '/categories/Spirits/Scotch Whisky.png',
+        image: '/categories/Johnnie Walker Black  Label Scotch Whisky.webp',
         description: 'A classic Highland single malt with rich heritage and global recognition.',
         tradeCapabilities: { exportAvailable: true, privateLabel: false, ukDistribution: true, euDistribution: true, onTradeFocused: true, offTradeFocused: true },
         products: [
-            { name: '12 Year Old Single Malt', image: '/categories/Spirits/Scotch Whisky.png', abv: '40%', size: '70cl', description: 'Rich fruit and spice.' }
+            { name: '12 Year Old Single Malt', image: '/categories/Johnnie Walker Black  Label Scotch Whisky.webp', abv: '40%', size: '70cl', description: 'Rich fruit and spice.' }
         ]
     },
     {
@@ -257,11 +257,11 @@ export const BRANDS: Brand[] = [
         country: 'Ireland',
         countryCode: 'ireland',
         positioning: 'Hospitality Core',
-        image: '/categories/Spirits/Jameson Irish Whiskey.webp',
+        image: '/categories/Jameson Irish Whiskey.webp',
         description: 'Triple-distilled Irish whiskey with smooth character.',
         tradeCapabilities: { exportAvailable: true, privateLabel: false, ukDistribution: true, euDistribution: true, onTradeFocused: true, offTradeFocused: true },
         products: [
-            { name: 'Original Blend', image: '/categories/Spirits/Jameson Irish Whiskey.webp', abv: '40%', size: '70cl', description: 'Triple distilled smoothness.' }
+            { name: 'Original Blend', image: '/categories/Jameson Irish Whiskey.webp', abv: '40%', size: '70cl', description: 'Triple distilled smoothness.' }
         ]
     },
     {
@@ -273,7 +273,7 @@ export const BRANDS: Brand[] = [
         country: 'United States',
         countryCode: 'usa',
         positioning: 'Market Entry',
-        image: '/categories/Spirits/Jim beam amwrican whicsky.jpg',
+        image: '/categories/Jack Daniels Tennessee  American Whiskey.webp',
         description: 'Small-batch Kentucky bourbon with growing demand in European markets.',
         tradeCapabilities: { exportAvailable: true, privateLabel: false, ukDistribution: true, euDistribution: true, onTradeFocused: true, offTradeFocused: true },
         products: []
@@ -337,11 +337,11 @@ export const BRANDS: Brand[] = [
         country: 'United Kingdom',
         countryCode: 'uk',
         positioning: 'Premium Cocktail',
-        image: '/categories/Spirits/Rum/Spiced rum.jpg',
+        image: '/categories/Captain Morgan Spiced Rum.jpg',
         description: 'Caribbean-style rum with UK distribution. Ideal for premium cocktail programs.',
         tradeCapabilities: { exportAvailable: true, privateLabel: false, ukDistribution: true, euDistribution: true, onTradeFocused: true, offTradeFocused: false },
         products: [
-            { name: 'Spiced Gold', image: '/categories/Spirits/Rum/Spiced rum.jpg', abv: '37.5%', size: '70cl', description: 'Smooth spiced rum for mixing.' }
+            { name: 'Spiced Gold', image: '/categories/Captain Morgan Spiced Rum.jpg', abv: '37.5%', size: '70cl', description: 'Smooth spiced rum for mixing.' }
         ]
     },
     {
@@ -371,11 +371,11 @@ export const BRANDS: Brand[] = [
         country: 'United Kingdom',
         countryCode: 'uk',
         positioning: 'Premium Craft',
-        image: '/categories/Live Trade Opportunities/Hendricks London Dry Gin.webp',
+        image: '/categories/Hendricks London Dry Gin.webp',
         description: 'A contemporary London Dry gin with a focus on botanical complexity.',
         tradeCapabilities: { exportAvailable: true, privateLabel: false, ukDistribution: true, euDistribution: true, onTradeFocused: true, offTradeFocused: false },
         products: [
-            { name: 'London Dry Gin', image: '/categories/Live Trade Opportunities/Hendricks London Dry Gin.webp', abv: '42%', size: '70cl', description: 'Classic juniper-forward gin.' }
+            { name: 'London Dry Gin', image: '/categories/Hendricks London Dry Gin.webp', abv: '42%', size: '70cl', description: 'Classic juniper-forward gin.' }
         ]
     },
     {
@@ -387,7 +387,7 @@ export const BRANDS: Brand[] = [
         country: 'Scotland',
         countryCode: 'scotland',
         positioning: 'Small Batch',
-        image: '/categories/Live Trade Opportunities/Hendricks London Dry Gin.webp',
+        image: '/categories/Hendricks London Dry Gin.webp',
         description: 'Distilled in the Scottish Highlands using wild botanicals.',
         tradeCapabilities: { exportAvailable: true, privateLabel: true, ukDistribution: true, euDistribution: true, onTradeFocused: true, offTradeFocused: true },
         products: []
@@ -453,7 +453,7 @@ export const BRANDS: Brand[] = [
         country: 'Italy',
         countryCode: 'italy',
         positioning: 'Traditional',
-        image: '/categories/Spirits/Whisky liQUEUR.jpeg',
+        image: '/categories/Aperol Flavoured Liqueurs.webp',
         description: 'Producers of classic Amaretto and Sambuca using centuries-old family recipes.',
         tradeCapabilities: { exportAvailable: true, privateLabel: true, ukDistribution: true, euDistribution: true, onTradeFocused: true, offTradeFocused: true },
         products: []
@@ -467,7 +467,7 @@ export const BRANDS: Brand[] = [
         country: 'Ireland',
         countryCode: 'ireland',
         positioning: 'Value Premium',
-        image: '/categories/Spirits/Whisky liQUEUR.jpeg',
+        image: '/categories/Baileys Irish Cream Liqueur.jpg',
         description: 'Made with fresh Irish dairy cream and aged whiskey.',
         tradeCapabilities: { exportAvailable: true, privateLabel: true, ukDistribution: true, euDistribution: true, onTradeFocused: true, offTradeFocused: true },
         products: []
@@ -483,11 +483,11 @@ export const BRANDS: Brand[] = [
         country: 'Italy',
         countryCode: 'italy',
         positioning: 'Regional Classic',
-        image: '/categories/Live Trade Opportunities/Wine.webp',
+        image: '/categories/Wine & Champagne/REd Wine.webp',
         description: 'Tuscan red wines with regional authenticity.',
         tradeCapabilities: { exportAvailable: true, privateLabel: false, ukDistribution: true, euDistribution: true, onTradeFocused: true, offTradeFocused: true },
         products: [
-            { name: 'Chianti Classico', image: '/categories/Live Trade Opportunities/Wine.webp', abv: '13.5%', size: '75cl', description: 'Notes of cherry and earth.' }
+            { name: 'Chianti Classico', image: '/categories/Wine & Champagne/REd Wine.webp', abv: '13.5%', size: '75cl', description: 'Notes of cherry and earth.' }
         ]
     },
     {
@@ -499,11 +499,11 @@ export const BRANDS: Brand[] = [
         country: 'Argentina',
         countryCode: 'argentina',
         positioning: 'Steakhouse Staple',
-        image: '/categories/Live Trade Opportunities/Wine.webp',
+        image: '/categories/Wine & Champagne/REd Wine.webp',
         description: 'Bold Malbec grown in the foothills of Mendoza. Excellent steakhouse wine.',
         tradeCapabilities: { exportAvailable: true, privateLabel: true, ukDistribution: true, euDistribution: true, onTradeFocused: true, offTradeFocused: false },
         products: [
-            { name: 'Reserva Malbec', image: '/categories/Live Trade Opportunities/Wine.webp', abv: '14%', size: '75cl', description: 'Deep plum and blackberry.' }
+            { name: 'Reserva Malbec', image: '/categories/Wine & Champagne/REd Wine.webp', abv: '14%', size: '75cl', description: 'Deep plum and blackberry.' }
         ]
     },
 
@@ -517,11 +517,11 @@ export const BRANDS: Brand[] = [
         country: 'New Zealand',
         countryCode: 'new-zealand',
         positioning: 'Export Grade',
-        image: '/categories/Live Trade Opportunities/Wine.webp',
+        image: '/categories/Wine & Champagne/Sauvignon Blanco.webp',
         description: 'Zesty, tropical New Zealand Sauvignon Blanc designed for the international palate.',
         tradeCapabilities: { exportAvailable: true, privateLabel: true, ukDistribution: true, euDistribution: true, onTradeFocused: true, offTradeFocused: true },
         products: [
-            { name: 'Estate Sauvignon Blanc', image: '/categories/Live Trade Opportunities/Wine.webp', abv: '12.5%', size: '75cl', description: 'Passionfruit and gooseberry notes.' }
+            { name: 'Estate Sauvignon Blanc', image: '/categories/Wine & Champagne/Sauvignon Blanco.webp', abv: '12.5%', size: '75cl', description: 'Passionfruit and gooseberry notes.' }
         ]
     },
     {
@@ -533,7 +533,7 @@ export const BRANDS: Brand[] = [
         country: 'France',
         countryCode: 'france',
         positioning: 'Classic',
-        image: '/categories/Live Trade Opportunities/Wine.webp',
+        image: '/categories/Wine & Champagne/white wine.jpg',
         description: 'Elegant white Burgundy focused on terroir and mineral finish.',
         tradeCapabilities: { exportAvailable: true, privateLabel: false, ukDistribution: true, euDistribution: true, onTradeFocused: true, offTradeFocused: false },
         products: []
@@ -549,11 +549,11 @@ export const BRANDS: Brand[] = [
         country: 'France',
         countryCode: 'france',
         positioning: 'Luxury',
-        image: '/categories/Champagne & Sparkling/pink Champagne.jpg',
+        image: '/categories/Wine & Champagne/REd Wine.webp',
         description: 'The quintessential pale pink Rosé from Provence. Dry, crisp, and fashionable.',
         tradeCapabilities: { exportAvailable: true, privateLabel: false, ukDistribution: true, euDistribution: true, onTradeFocused: true, offTradeFocused: true },
         products: [
-            { name: 'Cuvée Prestige', image: '/categories/Champagne & Sparkling/pink Champagne.jpg', abv: '12.5%', size: '75cl', description: 'Strawberry and saline finish.' }
+            { name: 'Cuvée Prestige', image: '/categories/Wine & Champagne/REd Wine.webp', abv: '12.5%', size: '75cl', description: 'Strawberry and saline finish.' }
         ]
     },
 
@@ -567,11 +567,11 @@ export const BRANDS: Brand[] = [
         country: 'France',
         countryCode: 'france',
         positioning: 'Premium Hospitality',
-        image: '/categories/Champagne & Sparkling/Champagne.jpg',
+        image: '/categories/Veuve Clicquot GB Champagne.webp',
         description: 'Traditional Champagne house with heritage and quality.',
         tradeCapabilities: { exportAvailable: true, privateLabel: false, ukDistribution: true, euDistribution: true, onTradeFocused: true, offTradeFocused: true },
         products: [
-            { name: 'Brut Réserve', image: '/categories/Champagne & Sparkling/Champagne.jpg', abv: '12%', size: '75cl', description: 'Crisp and elegant.' }
+            { name: 'Brut Réserve', image: '/categories/Veuve Clicquot GB Champagne.webp', abv: '12%', size: '75cl', description: 'Crisp and elegant.' }
         ]
     },
     {

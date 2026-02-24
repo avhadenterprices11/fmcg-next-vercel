@@ -247,21 +247,29 @@ function NavButton({ children, onClick }: { children: React.ReactNode; onClick?:
             initial="initial"
             whileHover="hover"
             whileTap="tap"
-            className="
-                relative group overflow-hidden px-8 py-2.5 rounded-full font-bold text-xs uppercase tracking-widest
-                flex items-center justify-center transition-all duration-500 bg-foreground text-background
-                dark:bg-emerald-600 dark:text-white outline-hidden cursor-pointer
-            "
+            className="relative group overflow-hidden px-8 py-2.5 rounded-full font-bold text-xs uppercase tracking-widest flex items-center justify-center transition-all duration-500 bg-foreground text-background dark:bg-emerald-600 dark:text-white outline-hidden cursor-pointer"
         >
+            {/* Background Fill Animation */}
             <motion.div
                 variants={{
                     initial: { y: "100%" },
                     hover: { y: "0%" }
                 }}
                 transition={{ duration: 0.4, ease: [0.19, 1, 0.22, 1] }}
-                className="absolute inset-0 z-0 bg-emerald-500"
+                className="absolute inset-0 z-0 bg-emerald-400 dark:bg-emerald-500"
             />
-            <span className="relative z-10 flex items-center justify-center transition-transform duration-300 group-hover:scale-[1.05]">
+
+            {/* Shine Effect */}
+            <motion.div
+                variants={{
+                    initial: { x: "-100%", opacity: 0 },
+                    hover: { x: "100%", opacity: 0.3 }
+                }}
+                transition={{ duration: 0.8, ease: "easeInOut" }}
+                className="absolute inset-0 z-1 bg-linear-to-r from-transparent via-white to-transparent skew-x-12"
+            />
+
+            <span className="relative z-10 flex items-center justify-center transition-transform duration-300 group-hover:scale-[1.02]">
                 {children}
             </span>
         </motion.button>

@@ -153,7 +153,12 @@ export function TradeOfferForm({ initialData }: TradeOfferFormProps) {
                                         name="title"
                                         render={({ field }) => (
                                             <FormItem>
-                                                <FormLabel>Title</FormLabel>
+                                                <div className="flex justify-between items-center">
+                                                    <FormLabel>Title</FormLabel>
+                                                    <span className="text-[10px] text-muted-foreground">
+                                                        {field.value?.length || 0}/200
+                                                    </span>
+                                                </div>
                                                 <FormControl>
                                                     <Input placeholder="Product title" {...field} />
                                                 </FormControl>
@@ -350,7 +355,12 @@ export function TradeOfferForm({ initialData }: TradeOfferFormProps) {
                                         name="price"
                                         render={({ field }) => (
                                             <FormItem>
-                                                <FormLabel>Price (Optional)</FormLabel>
+                                                <div className="flex justify-between items-center">
+                                                    <FormLabel>Price (Optional)</FormLabel>
+                                                    <span className="text-[10px] text-muted-foreground">
+                                                        {field.value?.length || 0}/50
+                                                    </span>
+                                                </div>
                                                 <FormControl>
                                                     <Input placeholder="e.g. $100" {...field} />
                                                 </FormControl>

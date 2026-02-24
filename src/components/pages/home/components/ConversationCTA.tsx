@@ -64,13 +64,7 @@ function CTAButton({ children, href, primary = false }: { children: React.ReactN
       initial="initial"
       whileHover="hover"
       whileTap="tap"
-      className={`
-        relative group overflow-hidden px-10 py-5 rounded-full font-bold text-sm uppercase tracking-widest
-        flex items-center justify-center gap-2 transition-all duration-500 min-w-[200px]
-        ${primary
-          ? 'bg-foreground text-background dark:bg-emerald-600 dark:text-white'
-          : 'bg-muted/50 text-foreground border border-border/50 hover:border-emerald-500/30'}
-      `}
+      className={`relative group overflow-hidden px-10 py-5 rounded-full font-bold text-sm uppercase tracking-widest flex items-center justify-center gap-2 transition-all duration-500 min-w-[200px] ${primary ? 'bg-foreground text-background dark:bg-emerald-600 dark:text-white' : 'bg-muted/50 text-foreground border border-border/50 hover:border-emerald-500/30'}`}
     >
       {/* Background Fill Animation */}
       <motion.div
@@ -79,10 +73,7 @@ function CTAButton({ children, href, primary = false }: { children: React.ReactN
           hover: { y: "0%" }
         }}
         transition={{ duration: 0.5, ease: [0.19, 1, 0.22, 1] }}
-        className={`
-          absolute inset-0 z-0
-          ${primary ? 'bg-emerald-400 dark:bg-emerald-500' : 'bg-emerald-500/10 dark:bg-emerald-500/10'}
-        `}
+        className={`absolute inset-0 z-0 ${primary ? 'bg-emerald-400 dark:bg-emerald-500' : 'bg-emerald-500/10 dark:bg-emerald-500/10'}`}
       />
 
       {/* Shine Effect */}

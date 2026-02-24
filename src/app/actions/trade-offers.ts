@@ -4,12 +4,19 @@ import dbConnect from '@/lib/db';
 import TradeOffer, { ITradeOffer } from '@/models/TradeOffer';
 import { tradeOffers as initialTradeOffers } from '@/components/pages/trade-opportunities/data/trade-offers.data';
 import { revalidatePath } from 'next/cache';
+import { tradeOfferSchema } from '../admin/_components/trade-offers/schema';
 
 // --- Create ---
-export async function createTradeOffer(data: ITradeOffer) {
+export async function createTradeOffer(data: any) {
     await dbConnect();
     try {
-        const newOffer = await TradeOffer.create(data);
+        const validated = tradeOfferSchema.safeParse(data);
+        if (!validated.success) {
+            return { success: false, error: validated.error.issues[0].message };
+        }
+
+        const validData = validated.data;
+        const newOffer = await TradeOffer.create(validData);
         revalidatePath('/admin/trade-offers'); // Adjust path as needed
         return { success: true, data: JSON.parse(JSON.stringify(newOffer)) };
     } catch (error) {
@@ -44,10 +51,16 @@ export async function getTradeOfferById(id: string) {
 }
 
 // --- Update ---
-export async function updateTradeOffer(id: string, data: Partial<ITradeOffer>) {
+export async function updateTradeOffer(id: string, data: any) {
     await dbConnect();
     try {
-        const updatedOffer = await TradeOffer.findByIdAndUpdate(id, data, {
+        const validated = tradeOfferSchema.safeParse(data);
+        if (!validated.success) {
+            return { success: false, error: validated.error.issues[0].message };
+        }
+
+        const validData = validated.data;
+        const updatedOffer = await TradeOffer.findByIdAndUpdate(id, validData, {
             returnDocument: 'after',
             runValidators: true,
         });

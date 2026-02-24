@@ -134,7 +134,12 @@ export function HeroBannerForm({ initialData }: HeroBannerFormProps) {
                                         name="title"
                                         render={({ field }) => (
                                             <FormItem>
-                                                <FormLabel>Title</FormLabel>
+                                                <div className="flex justify-between items-center">
+                                                    <FormLabel>Title</FormLabel>
+                                                    <span className="text-[10px] text-muted-foreground">
+                                                        {field.value?.length || 0}/100
+                                                    </span>
+                                                </div>
                                                 <FormControl>
                                                     <Input placeholder="Main heading text" {...field} />
                                                 </FormControl>
@@ -148,7 +153,12 @@ export function HeroBannerForm({ initialData }: HeroBannerFormProps) {
                                         name="subtitle"
                                         render={({ field }) => (
                                             <FormItem>
-                                                <FormLabel>Subtitle (Optional)</FormLabel>
+                                                <div className="flex justify-between items-center">
+                                                    <FormLabel>Subtitle (Optional)</FormLabel>
+                                                    <span className="text-[10px] text-muted-foreground">
+                                                        {field.value?.length || 0}/300
+                                                    </span>
+                                                </div>
                                                 <FormControl>
                                                     <Input placeholder="Smaller description text" {...field} />
                                                 </FormControl>
@@ -162,7 +172,12 @@ export function HeroBannerForm({ initialData }: HeroBannerFormProps) {
                                         name="cta"
                                         render={({ field }) => (
                                             <FormItem>
-                                                <FormLabel>Call to Action (Optional)</FormLabel>
+                                                <div className="flex justify-between items-center">
+                                                    <FormLabel>Call to Action (Optional)</FormLabel>
+                                                    <span className="text-[10px] text-muted-foreground">
+                                                        {field.value?.length || 0}/50
+                                                    </span>
+                                                </div>
                                                 <FormControl>
                                                     <Input placeholder="Button text (e.g. Shop Now)" {...field} />
                                                 </FormControl>

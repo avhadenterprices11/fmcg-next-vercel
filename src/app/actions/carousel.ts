@@ -3,6 +3,7 @@
 import dbConnect from '@/lib/db';
 import Carousel, { ICarousel } from '@/models/Carousel';
 import { revalidatePath } from 'next/cache';
+import { heroBannerSchema } from '../admin/_components/hero-banners/schema';
 
 export async function getCarouselItems(includeDrafts: boolean = false) {
     await dbConnect();
@@ -37,18 +38,25 @@ export async function normalizeCarouselOrders() {
     }
 }
 
-export async function createCarouselItem(data: Partial<ICarousel>) {
+export async function createCarouselItem(data: any) {
     await dbConnect();
     try {
+        const validated = heroBannerSchema.safeParse(data);
+        if (!validated.success) {
+            return { success: false, error: validated.error.issues[0].message };
+        }
+
+        const validData = validated.data;
+
         // Shift existing items if order is provided
-        if (typeof data.order === 'number') {
+        if (typeof validData.order === 'number') {
             await Carousel.updateMany(
-                { order: { $gte: data.order } },
+                { order: { $gte: validData.order } },
                 { $inc: { order: 1 } }
             );
         }
 
-        const newItem = await Carousel.create(data);
+        const newItem = await Carousel.create(validData);
 
         // Final cleanup to ensure no gaps
         await normalizeCarouselOrders();
@@ -61,21 +69,28 @@ export async function createCarouselItem(data: Partial<ICarousel>) {
     }
 }
 
-export async function updateCarouselItem(id: string, data: Partial<ICarousel>) {
+export async function updateCarouselItem(id: string, data: any) {
     await dbConnect();
     try {
+        const validated = heroBannerSchema.safeParse(data);
+        if (!validated.success) {
+            return { success: false, error: validated.error.issues[0].message };
+        }
+
+        const validData = validated.data;
+
         const currentItem = await Carousel.findById(id);
         if (!currentItem) return { success: false, error: 'Item not found' };
 
         // If order is changed, shift others
-        if (typeof data.order === 'number' && data.order !== currentItem.order) {
+        if (typeof validData.order === 'number' && validData.order !== currentItem.order) {
             await Carousel.updateMany(
-                { _id: { $ne: id }, order: { $gte: data.order } },
+                { _id: { $ne: id }, order: { $gte: validData.order } },
                 { $inc: { order: 1 } }
             );
         }
 
-        const updatedItem = await Carousel.findByIdAndUpdate(id, data, { new: true });
+        const updatedItem = await Carousel.findByIdAndUpdate(id, validData, { new: true });
 
         // Final sequential cleanup
         await normalizeCarouselOrders();

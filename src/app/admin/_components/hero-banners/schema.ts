@@ -1,12 +1,22 @@
 import z from "zod";
 
 export const heroBannerSchema = z.object({
-    title: z.string().min(1, "Title is required"),
-    subtitle: z.string().optional(),
-    cta: z.string().optional(),
+    title: z.string()
+        .min(1, "Title is required")
+        .max(100, "Title cannot exceed 100 characters"),
+    subtitle: z.string()
+        .max(300, "Subtitle cannot exceed 300 characters")
+        .optional()
+        .or(z.literal("")),
+    cta: z.string()
+        .max(50, "CTA text cannot exceed 50 characters")
+        .optional()
+        .or(z.literal("")),
     layout: z.enum(['norman', 'found', 'measured', 'centered']),
-    image: z.string().min(1, "Image URL is required"),
-    order: z.number().min(0, "Order must be a positive number"),
+    image: z.string().min(1, "Background image is required"),
+    order: z.number()
+        .int("Order must be a whole number")
+        .min(0, "Order must be 0 or greater"),
     status: z.enum(["active", "draft"]),
 });
 
