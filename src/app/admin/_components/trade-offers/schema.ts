@@ -11,10 +11,6 @@ export const tradeOfferSchema = z.object({
     availability: z.string().min(1, "Availability status is required"),
     image: z.string().min(1, "Product image is required"),
     types: z.array(z.string().max(50, "Type tag too long")).min(1, "Select at least one type"),
-    price: z.string()
-        .max(50, "Price cannot exceed 50 characters")
-        .optional()
-        .or(z.literal("")),
     status: z.enum(["active", "draft"]),
 });
 

@@ -75,7 +75,11 @@ export function HeroBannerForm({ initialData }: HeroBannerFormProps) {
 
             if (result.success) {
                 toast.success(initialData ? "Hero banner updated" : "Hero banner created");
-                router.push("/admin/hero-banners");
+                if (initialData?._id) {
+                    router.push(`/admin/hero-banners?updated=${initialData._id}`);
+                } else {
+                    router.push("/admin/hero-banners");
+                }
                 router.refresh();
             } else {
                 toast.error(result.error || "Something went wrong");
@@ -96,7 +100,18 @@ export function HeroBannerForm({ initialData }: HeroBannerFormProps) {
 
     return (
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+            <form
+                onSubmit={form.handleSubmit(onSubmit)}
+                className="space-y-8"
+                onKeyDown={(e) => {
+                    if (
+                        e.key === "Enter" &&
+                        (e.target as HTMLElement).tagName !== "BUTTON"
+                    ) {
+                        e.preventDefault();
+                    }
+                }}
+            >
                 <PageHeader
                     title={initialData ? "Edit Hero Banner" : "Create Hero Banner"}
                     subtitle={initialData ? "Update existing hero banner details." : "Add a new hero banner to the carousel."}

@@ -1,7 +1,9 @@
+import { Suspense } from "react";
 import { getTradeOffers } from "@/app/actions/trade-offers";
 import TradeOffersClient from "./client";
+import { TradeOfferFormSkeleton } from "../_components/trade-offers/TradeOfferFormSkeleton";
 
-export default async function TradeOffersPage() {
+async function TradeOffersContent() {
     const { success, data, error } = await getTradeOffers();
 
     if (!success) {
@@ -17,4 +19,12 @@ export default async function TradeOffersPage() {
     const tradeOffers = data ? JSON.parse(JSON.stringify(data)) : [];
 
     return <TradeOffersClient initialData={tradeOffers} />;
+}
+
+export default function TradeOffersPage() {
+    return (
+        <Suspense fallback={<TradeOfferFormSkeleton />}>
+            <TradeOffersContent />
+        </Suspense>
+    );
 }

@@ -57,7 +57,6 @@ export function TradeOfferForm({ initialData }: TradeOfferFormProps) {
         availability: initialData.availability || "Ongoing",
         image: initialData.image || "",
         types: toArray(initialData.types),
-        price: initialData.price || "",
         status: initialData.status as "active" | "draft" || "draft",
     } : {
         title: "",
@@ -68,7 +67,6 @@ export function TradeOfferForm({ initialData }: TradeOfferFormProps) {
         availability: "Ongoing",
         image: "",
         types: [],
-        price: "",
         status: "draft",
     };
 
@@ -94,7 +92,11 @@ export function TradeOfferForm({ initialData }: TradeOfferFormProps) {
 
             if (result.success) {
                 toast.success(initialData ? "Trade offer updated" : "Trade offer created");
-                router.push("/admin/trade-offers");
+                if (initialData?._id) {
+                    router.push(`/admin/trade-offers?updated=${initialData._id}`);
+                } else {
+                    router.push("/admin/trade-offers");
+                }
                 router.refresh();
             } else {
                 toast.error(result.error || "Something went wrong");
@@ -115,7 +117,18 @@ export function TradeOfferForm({ initialData }: TradeOfferFormProps) {
 
     return (
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+            <form
+                onSubmit={form.handleSubmit(onSubmit)}
+                className="space-y-8"
+                onKeyDown={(e) => {
+                    if (
+                        e.key === "Enter" &&
+                        (e.target as HTMLElement).tagName !== "BUTTON"
+                    ) {
+                        e.preventDefault();
+                    }
+                }}
+            >
                 <PageHeader
                     title={initialData ? "Edit Trade Offer" : "Create Trade Offer"}
                     subtitle={initialData ? "Update existing trade offer details." : "Add a new trade offer to the catalog."}
@@ -350,24 +363,6 @@ export function TradeOfferForm({ initialData }: TradeOfferFormProps) {
                                         )}
                                     />
 
-                                    <FormField
-                                        control={form.control}
-                                        name="price"
-                                        render={({ field }) => (
-                                            <FormItem>
-                                                <div className="flex justify-between items-center">
-                                                    <FormLabel>Price (Optional)</FormLabel>
-                                                    <span className="text-[10px] text-muted-foreground">
-                                                        {field.value?.length || 0}/50
-                                                    </span>
-                                                </div>
-                                                <FormControl>
-                                                    <Input placeholder="e.g. $100" {...field} />
-                                                </FormControl>
-                                                <FormMessage />
-                                            </FormItem>
-                                        )}
-                                    />
                                 </CardContent>
                             </Card>
                         </div>

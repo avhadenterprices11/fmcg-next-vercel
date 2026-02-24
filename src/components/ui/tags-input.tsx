@@ -16,6 +16,7 @@ export function TagsInput({ value = [], onChange, placeholder }: TagsInputProps)
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === "Enter") {
             e.preventDefault();
+            e.stopPropagation();
             addTag();
         } else if (e.key === "Backspace" && !inputValue && value.length > 0) {
             removeTag(value.length - 1);

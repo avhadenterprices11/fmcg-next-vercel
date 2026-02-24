@@ -1,13 +1,14 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { GenericTable, ColumnConfig } from "../_components/data-table/GenericTable";
 import { FiltersBar, FilterOption, SortOption } from "../_components/data-table/FiltersBar";
 import { MetricsGrid, MetricItem } from "../_components/MetricsGrid";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Plus, Tag, CheckCircle, FileText, Clock } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
+import { toast } from "sonner";
 
 // Types matching the backend data
 interface TradeOffer {
@@ -32,6 +33,24 @@ export default function TradeOffersClient({ initialData }: TradeOffersClientProp
     const [data, setData] = useState<TradeOffer[]>(initialData);
     const [search, setSearch] = useState("");
     const router = useRouter();
+    const searchParams = useSearchParams();
+    const updatedId = searchParams.get("updated");
+
+    // Auto-clear the highlight after 4 seconds
+    const [highlightedId, setHighlightedId] = useState<string | null>(updatedId);
+    useEffect(() => {
+        if (updatedId) {
+            // Find the offer title for a more descriptive toast
+            const offer = initialData.find(o => o._id === updatedId);
+            toast.success(
+                offer ? `"${offer.title}" updated successfully` : "Trade offer updated successfully",
+                { description: "The offer has been moved to the top of the list." }
+            );
+            setHighlightedId(updatedId);
+            const timer = setTimeout(() => setHighlightedId(null), 4000);
+            return () => clearTimeout(timer);
+        }
+    }, [updatedId]);
 
     // Pagination state
     const [page, setPage] = useState(1);
@@ -116,8 +135,25 @@ export default function TradeOffersClient({ initialData }: TradeOffersClientProp
     // --- PAGINATION LOGIC ---
     const paginatedData = useMemo(() => {
         const start = (page - 1) * rowsPerPage;
-        return filteredData.slice(start, start + rowsPerPage);
-    }, [filteredData, page, rowsPerPage]);
+        let sliced = filteredData.slice(start, start + rowsPerPage);
+
+        // Pin the recently updated offer to the top of page 1
+        if (updatedId && page === 1) {
+            const updatedIndex = sliced.findIndex(item => item._id === updatedId);
+            if (updatedIndex > 0) {
+                const [updated] = sliced.splice(updatedIndex, 1);
+                sliced = [updated, ...sliced];
+            } else if (updatedIndex === -1) {
+                // It might be on another page — pull it from the full filteredData
+                const globalIndex = filteredData.findIndex(item => item._id === updatedId);
+                if (globalIndex !== -1) {
+                    sliced = [filteredData[globalIndex], ...sliced.slice(0, rowsPerPage - 1)];
+                }
+            }
+        }
+
+        return sliced;
+    }, [filteredData, page, rowsPerPage, updatedId]);
 
     const totalPages = Math.ceil(filteredData.length / rowsPerPage);
 
@@ -338,6 +374,11 @@ export default function TradeOffersClient({ initialData }: TradeOffersClientProp
                 sortDirection={sortDirection}
                 onSortChange={(key, dir) => { setSortKey(key); setSortDirection(dir); }}
                 onRowClick={(row) => router.push(`/admin/trade-offers/${row._id}`)}
+                getRowClass={(row) =>
+                    row._id === highlightedId
+                        ? "bg-amber-50 dark:bg-amber-950/30 ring-1 ring-inset ring-amber-400/60 transition-all duration-1000"
+                        : "transition-all duration-1000"
+                }
                 rowActionsBuilder={(row) => [
                     { label: "Edit", onClick: () => router.push(`/admin/trade-offers/${row._id}`) }
                 ]}
