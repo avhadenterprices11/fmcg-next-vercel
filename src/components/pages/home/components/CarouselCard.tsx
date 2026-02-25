@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { Plus, ChevronRight } from 'lucide-react';
 // Motion imports removed in favor of Tailwind CSS animations
 import { type ICarousel as Card } from '@/models/Carousel';
@@ -100,9 +101,9 @@ function FoundLayout({ card, isActive, isPortable }: { card: Card; isActive: boo
                     </p>
                 )}
                 {card.cta && isActive && (
-                    <button className={`${isPortable ? 'text-base' : 'text-xl'} text-white hover:opacity-80 transition-opacity flex items-center gap-2`}>
+                    <Link href="/trade-opportunities" className={`${isPortable ? 'text-base' : 'text-xl'} text-white hover:opacity-80 transition-opacity flex items-center gap-2`}>
                         {card.cta.replace('→', '')} <ChevronRight className="w-5 h-5" />
-                    </button>
+                    </Link>
                 )}
             </div>
         </>

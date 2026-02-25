@@ -5,9 +5,11 @@ import TradeOffer, { ITradeOffer } from '@/models/TradeOffer';
 import { tradeOffers as initialTradeOffers } from '@/components/pages/trade-opportunities/data/trade-offers.data';
 import { revalidatePath } from 'next/cache';
 import { tradeOfferSchema } from '../admin/_components/trade-offers/schema';
+import { requireAdmin } from '@/lib/auth';
 
 // --- Create ---
 export async function createTradeOffer(data: any) {
+    await requireAdmin();
     await dbConnect();
     try {
         const validated = tradeOfferSchema.safeParse(data);
@@ -52,6 +54,7 @@ export async function getTradeOfferById(id: string) {
 
 // --- Update ---
 export async function updateTradeOffer(id: string, data: any) {
+    await requireAdmin();
     await dbConnect();
     try {
         const validated = tradeOfferSchema.safeParse(data);
@@ -75,6 +78,7 @@ export async function updateTradeOffer(id: string, data: any) {
 
 // --- Delete ---
 export async function deleteTradeOffer(id: string) {
+    await requireAdmin();
     await dbConnect();
     try {
         const deletedOffer = await TradeOffer.findByIdAndDelete(id);
@@ -89,6 +93,7 @@ export async function deleteTradeOffer(id: string) {
 
 // --- Seed ---
 export async function seedTradeOffers() {
+    await requireAdmin();
     await dbConnect();
     try {
         // Optional: Clear existing data before seeding

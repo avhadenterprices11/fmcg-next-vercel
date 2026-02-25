@@ -2,6 +2,7 @@
 
 import { motion } from "motion/react";
 import { ArrowRight, Store, Warehouse, Globe, Package } from "lucide-react";
+import Link from "next/link";
 import { workWithCards } from '../data/work-with-cards.data';
 import { containerVariants, itemVariants } from '../constants/animations';
 
@@ -51,40 +52,41 @@ export function WhoWeWorkWith() {
                         viewport={{ once: true, margin: "-100px" }}
                     >
                         {workWithCards.map((card) => (
-                            <motion.div
-                                key={card.id}
-                                variants={itemVariants}
-                                className="group relative bg-card/50 backdrop-blur-sm rounded-3xl p-8 border border-border/50 hover:border-emerald-500/30 hover:bg-card/80 dark:hover:bg-card/60 shadow-sm hover:shadow-md hover:shadow-emerald-500/5 transition-all duration-500"
-                                tabIndex={0}
-                                role="article"
-                                aria-labelledby={`card-title-${card.id}`}
-                            >
-                                <div className="absolute inset-0 rounded-3xl bg-linear-to-br from-emerald-500/0 via-emerald-500/0 to-emerald-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" aria-hidden="true" />
+                            <Link key={card.id} href="/contact">
+                                <motion.div
+                                    variants={itemVariants}
+                                    className="group relative bg-card/50 backdrop-blur-sm rounded-3xl p-8 border border-border/50 hover:border-emerald-500/30 hover:bg-card/80 dark:hover:bg-card/60 shadow-sm hover:shadow-md hover:shadow-emerald-500/5 transition-all duration-500"
+                                    tabIndex={-1}
+                                    role="article"
+                                    aria-labelledby={`card-title-${card.id}`}
+                                >
+                                    <div className="absolute inset-0 rounded-3xl bg-linear-to-br from-emerald-500/0 via-emerald-500/0 to-emerald-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" aria-hidden="true" />
 
-                                <div className="relative z-10">
-                                    <div className="w-14 h-14 rounded-2xl bg-primary/5 border border-primary/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500 ease-out">
-                                        <div className="text-emerald-600 dark:text-emerald-500">
-                                            {(() => {
-                                                const IconComponent = iconMap[card.icon];
-                                                return <IconComponent className="w-6 h-6" />;
-                                            })()}
+                                    <div className="relative z-10">
+                                        <div className="w-14 h-14 rounded-2xl bg-primary/5 border border-primary/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500 ease-out">
+                                            <div className="text-emerald-600 dark:text-emerald-500">
+                                                {(() => {
+                                                    const IconComponent = iconMap[card.icon];
+                                                    return <IconComponent className="w-6 h-6" />;
+                                                })()}
+                                            </div>
+                                        </div>
+
+                                        <h3 id={`card-title-${card.id}`} className="text-2xl font-bold text-foreground mb-3 tracking-tight group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors duration-300">
+                                            {card.title}
+                                        </h3>
+
+                                        <p className="text-muted-foreground leading-relaxed mb-6 text-pretty">
+                                            {card.description}
+                                        </p>
+
+                                        <div className="flex items-center text-sm font-bold text-foreground/80 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
+                                            <span>Partner with us</span>
+                                            <ArrowRight className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" />
                                         </div>
                                     </div>
-
-                                    <h3 id={`card-title-${card.id}`} className="text-2xl font-bold text-foreground mb-3 tracking-tight group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors duration-300">
-                                        {card.title}
-                                    </h3>
-
-                                    <p className="text-muted-foreground leading-relaxed mb-6 text-pretty">
-                                        {card.description}
-                                    </p>
-
-                                    <div className="flex items-center text-sm font-bold text-foreground/80 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
-                                        <span>Partner with us</span>
-                                        <ArrowRight className="w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" />
-                                    </div>
-                                </div>
-                            </motion.div>
+                                </motion.div>
+                            </Link>
                         ))}
                     </motion.div>
                 </div>

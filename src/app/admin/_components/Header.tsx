@@ -23,6 +23,7 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
+import { logoutAdmin } from "@/app/actions/auth";
 
 interface HeaderProps {
     isDarkMode: boolean;
@@ -166,7 +167,7 @@ export function Header({
                             <span>Settings</span>
                         </DropdownMenuItem>
                         <DropdownMenuSeparator className="bg-[var(--sidebar-border)]" />
-                        <DropdownMenuItem className="text-red-500 focus:bg-red-500/10 focus:text-red-600 cursor-pointer" onClick={() => router.push("/")}>
+                        <DropdownMenuItem className="text-red-500 focus:bg-red-500/10 focus:text-red-600 cursor-pointer" onClick={() => logoutAdmin()}>
                             <LogOut className="mr-2 h-4 w-4" />
                             <span>Log out</span>
                         </DropdownMenuItem>

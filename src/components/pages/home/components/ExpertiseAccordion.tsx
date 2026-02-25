@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Plus, ArrowUpRight } from 'lucide-react';
+import Link from 'next/link';
 import { cn } from "@/lib/utils";
 import Image from 'next/image';
 import type { ExpertiseItem } from '../types/expertise.types';
@@ -162,9 +163,9 @@ function AccordionPanel({
                                         <li key={i}>{desc}</li>
                                     ))}
                                 </ul>
-                                <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white text-black flex items-center justify-center hover:scale-110 transition-transform self-end md:self-auto">
+                                <Link href="/how-we-work" className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white text-black flex items-center justify-center hover:scale-110 transition-transform self-end md:self-auto">
                                     <ArrowUpRight className="w-5 h-5 md:w-6 md:h-6" />
-                                </div>
+                                </Link>
                             </div>
                         </motion.div>
                     ) : (

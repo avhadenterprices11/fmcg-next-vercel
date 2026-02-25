@@ -2,6 +2,7 @@
 
 import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 export function ConversationCTA() {
   return (
@@ -39,12 +40,12 @@ export function ConversationCTA() {
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-6 w-full sm:w-auto">
-              <CTAButton href="#contact" primary>
+              <CTAButton href="/contact" primary>
                 Contact Sales
                 <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
               </CTAButton>
 
-              <CTAButton href="#portfolio">
+              <CTAButton href="/categories">
                 View Portfolio
               </CTAButton>
             </div>
@@ -59,36 +60,16 @@ export function ConversationCTA() {
 
 function CTAButton({ children, href, primary = false }: { children: React.ReactNode; href: string; primary?: boolean }) {
   return (
-    <motion.a
+    <Link
       href={href}
-      initial="initial"
-      whileHover="hover"
-      whileTap="tap"
-      className={`relative group overflow-hidden px-10 py-5 rounded-full font-bold text-sm uppercase tracking-widest flex items-center justify-center gap-2 transition-all duration-500 min-w-[200px] ${primary ? 'bg-foreground text-background dark:bg-emerald-600 dark:text-white' : 'bg-muted/50 text-foreground border border-border/50 hover:border-emerald-500/30'}`}
+      className={`relative group overflow-hidden px-10 py-5 rounded-full font-bold text-sm uppercase tracking-widest flex items-center justify-center gap-2 transition-all duration-500 min-w-[200px] hover:scale-[1.02] active:scale-[0.98] ${primary ? 'bg-foreground text-background dark:bg-emerald-600 dark:text-white' : 'bg-muted/50 text-foreground border border-border/50 hover:border-emerald-500/30'}`}
     >
       {/* Background Fill Animation */}
-      <motion.div
-        variants={{
-          initial: { y: "100%" },
-          hover: { y: "0%" }
-        }}
-        transition={{ duration: 0.5, ease: [0.19, 1, 0.22, 1] }}
-        className={`absolute inset-0 z-0 ${primary ? 'bg-emerald-400 dark:bg-emerald-500' : 'bg-emerald-500/10 dark:bg-emerald-500/10'}`}
-      />
-
-      {/* Shine Effect */}
-      <motion.div
-        variants={{
-          initial: { x: "-100%", opacity: 0 },
-          hover: { x: "100%", opacity: 0.3 }
-        }}
-        transition={{ duration: 0.8, ease: "easeInOut" }}
-        className="absolute inset-0 z-1 bg-linear-to-r from-transparent via-white to-transparent skew-x-12"
-      />
+      <span className={`absolute inset-0 z-0 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] ${primary ? 'bg-emerald-400 dark:bg-emerald-500' : 'bg-emerald-500/10 dark:bg-emerald-500/10'}`} />
 
       <span className="relative z-10 flex items-center justify-center transition-colors duration-300 group-hover:scale-[1.02]">
         {children}
       </span>
-    </motion.a>
+    </Link>
   );
 }

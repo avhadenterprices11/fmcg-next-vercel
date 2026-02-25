@@ -4,6 +4,7 @@ import dbConnect from '@/lib/db';
 import Carousel, { ICarousel } from '@/models/Carousel';
 import { revalidatePath } from 'next/cache';
 import { heroBannerSchema } from '../admin/_components/hero-banners/schema';
+import { requireAdmin } from '@/lib/auth';
 
 export async function getCarouselItems(includeDrafts: boolean = false) {
     await dbConnect();
@@ -39,6 +40,7 @@ export async function normalizeCarouselOrders() {
 }
 
 export async function createCarouselItem(data: any) {
+    await requireAdmin();
     await dbConnect();
     try {
         const validated = heroBannerSchema.safeParse(data);
@@ -70,6 +72,7 @@ export async function createCarouselItem(data: any) {
 }
 
 export async function updateCarouselItem(id: string, data: any) {
+    await requireAdmin();
     await dbConnect();
     try {
         const validated = heroBannerSchema.safeParse(data);
@@ -104,6 +107,7 @@ export async function updateCarouselItem(id: string, data: any) {
 }
 
 export async function deleteCarouselItem(id: string) {
+    await requireAdmin();
     await dbConnect();
     try {
         const deletedItem = await Carousel.findByIdAndDelete(id);
@@ -121,6 +125,7 @@ export async function deleteCarouselItem(id: string) {
 }
 
 export async function reorderCarouselItems(updates: { id: string; order: number }[]) {
+    await requireAdmin();
     await dbConnect();
     try {
         const bulkOps = updates.map((update) => ({

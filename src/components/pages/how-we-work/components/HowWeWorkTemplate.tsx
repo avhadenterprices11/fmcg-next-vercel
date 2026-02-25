@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { MoveRight, RefreshCcw } from "lucide-react";
 import type { JourneyMode, JourneyState } from "../types/journey.types";
 import JourneyWizard from "./JourneyWizard";
@@ -101,16 +102,16 @@ export default function HowWeWorkTemplate() {
                     </p>
 
                     <div className="flex flex-col md:flex-row items-center justify-center gap-6">
-                        <button className="w-full md:w-auto bg-foreground text-background px-8 py-4 md:px-10 md:py-5 rounded-full text-base md:text-lg font-bold hover:bg-foreground/90 hover:scale-105 active:scale-[0.98] transition-all shadow-xl flex items-center justify-center gap-3 touch-manipulation">
+                        <Link href="/contact" className="w-full md:w-auto bg-foreground text-background px-8 py-4 md:px-10 md:py-5 rounded-full text-base md:text-lg font-bold hover:bg-foreground/90 hover:scale-105 active:scale-[0.98] transition-all shadow-xl flex items-center justify-center gap-3 touch-manipulation">
                             Start Your Journey
                             <MoveRight className="w-5 h-5" />
-                        </button>
-                        <button
-                            onClick={() => window.location.href = 'mailto:sales@globaltradepartners.com'}
-                            className="w-full md:w-auto bg-muted text-muted-foreground px-8 py-4 md:px-10 md:py-5 rounded-full font-bold hover:bg-muted/80 hover:text-foreground active:scale-[0.98] transition-colors touch-manipulation"
+                        </Link>
+                        <Link
+                            href="/contact"
+                            className="w-full md:w-auto flex items-center justify-center bg-muted text-muted-foreground px-8 py-4 md:px-10 md:py-5 rounded-full font-bold hover:bg-muted/80 hover:text-foreground active:scale-[0.98] transition-colors touch-manipulation"
                         >
                             Talk to an Expert
-                        </button>
+                        </Link>
                     </div>
                 </div>
             </section >

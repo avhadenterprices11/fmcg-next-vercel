@@ -31,7 +31,7 @@ export const impactShowcaseItems: ImpactShowcaseItem[] = [
         ],
         tags: ["Fine Wine", "Sparkling", "Cuvée"]
     },
-     {
+    {
         id: "beers-craft",
         title: "Beers & Craft",
         subtitle: " artisanal & mainstream brews",
@@ -60,7 +60,7 @@ export const impactShowcaseItems: ImpactShowcaseItem[] = [
         image: "/categories/Product Categories/Soft drink -Cocktail mixer tonic.jpg",
         tags: ["Functional", "Mixers", "Zero-Alc"]
     },
-     {
+    {
         id: "food-grocery",
         title: "Food & Grocery",
         subtitle: "Essential Pantry Staples",
@@ -76,6 +76,6 @@ export const impactShowcaseItems: ImpactShowcaseItem[] = [
         ],
         tags: ["Pantry", "Organic", "Staples"]
     }
-    
-    
+
+
 ];

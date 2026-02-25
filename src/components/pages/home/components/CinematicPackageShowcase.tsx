@@ -3,6 +3,7 @@ import { useRef, useState, useEffect, useMemo } from "react";
 import { motion, useScroll, useTransform, useSpring, useInView, MotionValue } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { packages } from "../data/packages.data";
 import type { PackageCard } from "../types/package.types";
 import gsap from "gsap";
@@ -108,7 +109,7 @@ function ContentBlock({ pkg, index, setActiveCard }: { pkg: PackageCard, index: 
                 </div>
 
                 {pkg.showCTA && (
-                    <CTAButton href={`/portfolio/${pkg.id}`}>
+                    <CTAButton href="/how-we-work">
                         Explore {pkg.title.split(' ')[0]}
                         <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                     </CTAButton>
@@ -356,41 +357,21 @@ function VisualSlide({ pkg, index, activeCard, total }: { pkg: PackageCard, inde
 
 function CTAButton({ children, href }: { children: React.ReactNode; href: string }) {
     return (
-        <motion.a
+        <Link
             href={href}
-            initial="initial"
-            whileHover="hover"
-            whileTap="tap"
             className="
                 relative group overflow-hidden px-10 py-5 rounded-full font-bold text-sm uppercase tracking-widest
                 flex items-center justify-center gap-2 transition-all duration-500 min-w-[200px]
-                bg-foreground text-background dark:bg-emerald-600 dark:text-white
+                bg-foreground text-background dark:bg-emerald-600 dark:text-white hover:scale-[1.02] active:scale-[0.98]
             "
         >
             {/* Background Fill Animation */}
-            <motion.div
-                variants={{
-                    initial: { y: "100%" },
-                    hover: { y: "0%" }
-                }}
-                transition={{ duration: 0.5, ease: [0.19, 1, 0.22, 1] }}
-                className="absolute inset-0 z-0 bg-emerald-400 dark:bg-emerald-500"
-            />
-
-            {/* Shine Effect */}
-            <motion.div
-                variants={{
-                    initial: { x: "-100%", opacity: 0 },
-                    hover: { x: "100%", opacity: 0.3 }
-                }}
-                transition={{ duration: 0.8, ease: "easeInOut" }}
-                className="absolute inset-0 z-1 bg-linear-to-r from-transparent via-white to-transparent skew-x-12"
-            />
+            <span className="absolute inset-0 z-0 bg-emerald-400 dark:bg-emerald-500 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.19,1,0.22,1)]" />
 
             <span className="relative z-10 flex items-center justify-center transition-colors duration-300 group-hover:scale-[1.02]">
                 {children}
             </span>
-        </motion.a>
+        </Link>
     );
 }
 

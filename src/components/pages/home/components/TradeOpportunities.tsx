@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 import { motion, useMotionValue, useSpring, AnimatePresence } from 'motion/react';
 import { ArrowUpRight } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 import type { TradeOpportunityCard } from '../types/trade-opportunity.types';
 import { tradeOpportunities } from '../data/trade-opportunities.data';
@@ -108,120 +109,121 @@ function TradeOpportunityCardComponent({
     };
 
     return (
-        <motion.div
-            ref={containerRef}
-            role="button"
-            tabIndex={0}
-            aria-label={`View trade opportunity: ${card.title}`}
-            onMouseEnter={() => !isMobile && setHoveredId(card.id)}
-            onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseLeave}
-            className={`
+        <Link href="/trade-opportunities" className="block">
+            <motion.div
+                ref={containerRef}
+                tabIndex={-1}
+                aria-label={`View trade opportunity: ${card.title}`}
+                onMouseEnter={() => !isMobile && setHoveredId(card.id)}
+                onMouseMove={handleMouseMove}
+                onMouseLeave={handleMouseLeave}
+                className={`
           relative h-[450px] md:h-[550px] rounded-[2rem] md:rounded-[2.5rem] overflow-hidden cursor-pointer
           transition-all duration-500 ease-out group
           border border-border bg-card shadow-sm hover:shadow-2xl
       `}
-            animate={{
-                opacity: isDimmed ? 0.6 : 1,
-                filter: isDimmed ? "grayscale(100%) brightness(0.9)" : "grayscale(0%)"
-            }}
-            layout
-        >
-            {/* Background Image Panel */}
-            <motion.div
-                className="absolute inset-0 z-0 bg-black/90"
-                initial={false}
                 animate={{
-                    opacity: isHovered ? 1 : 0
+                    opacity: isDimmed ? 0.6 : 1,
+                    filter: isDimmed ? "grayscale(100%) brightness(0.9)" : "grayscale(0%)"
                 }}
-                transition={{ duration: 0.5 }}
+                layout
             >
+                {/* Background Image Panel */}
                 <motion.div
-                    className="w-full h-full relative"
-                    animate={{ scale: isHovered ? 1.05 : 1.15 }}
-                    transition={{ duration: 1.5, ease: "easeOut" }}
+                    className="absolute inset-0 z-0 bg-black/90"
+                    initial={false}
+                    animate={{
+                        opacity: isHovered ? 1 : 0
+                    }}
+                    transition={{ duration: 0.5 }}
                 >
-                    <Image
-                        src={card.image}
-                        alt={card.title}
-                        fill
-                        className="object-cover opacity-60"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    />
+                    <motion.div
+                        className="w-full h-full relative"
+                        animate={{ scale: isHovered ? 1.05 : 1.15 }}
+                        transition={{ duration: 1.5, ease: "easeOut" }}
+                    >
+                        <Image
+                            src={card.image}
+                            alt={card.title}
+                            fill
+                            className="object-cover opacity-60"
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        />
+                    </motion.div>
+                    {/* Gradient Overlay */}
+                    <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/40 to-transparent" />
                 </motion.div>
-                {/* Gradient Overlay */}
-                <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/40 to-transparent" />
-            </motion.div>
 
-            {/* Content Layer */}
-            <div className="absolute inset-0 z-10 p-6 md:p-10 flex flex-col justify-between h-full pointer-events-none">
+                {/* Content Layer */}
+                <div className="absolute inset-0 z-10 p-6 md:p-10 flex flex-col justify-between h-full pointer-events-none">
 
-                {/* Top: Status & Region */}
-                <div className="flex justify-between items-start pointer-events-auto">
-                    <div className="flex flex-col gap-2">
-                        <span className={`
+                    {/* Top: Status & Region */}
+                    <div className="flex justify-between items-start pointer-events-auto">
+                        <div className="flex flex-col gap-2">
+                            <span className={`
                             px-3 py-1 w-fit rounded-full text-[10px] md:text-xs font-bold tracking-wider uppercase border
                             bg-white/10 border-white/20 text-white backdrop-blur-md
                         `}>
-                            {card.status}
-                        </span>
-                        <span className="text-xs font-medium text-white/80 ml-1">{card.region}</span>
+                                {card.status}
+                            </span>
+                            <span className="text-xs font-medium text-white/80 ml-1">{card.region}</span>
+                        </div>
                     </div>
-                </div>
 
-                {/* Magnetic Arrow Button */}
-                <div className="absolute top-6 right-6 md:top-8 md:right-8 z-20 pointer-events-auto">
-                    <motion.button
-                        style={{ x: springX, y: springY }}
-                        className={`
+                    {/* Magnetic Arrow Button */}
+                    <div className="absolute top-6 right-6 md:top-8 md:right-8 z-20 pointer-events-auto">
+                        <motion.button
+                            style={{ x: springX, y: springY }}
+                            className={`
                 group flex items-center justify-center gap-2 rounded-full p-2.5 md:p-3
                 transition-colors duration-300
                 ${isHovered ? "bg-white text-black pl-4 pr-3 md:pl-5 md:pr-4" : "bg-white text-black"}
               `}
 
-                        animate={{
-                            scale: 1,
-                            opacity: 1
-                        }}
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.95 }}
-                    >
-                        <AnimatePresence>
-                            <motion.span
-                                className="hidden lg:block overflow-hidden whitespace-nowrap text-sm font-bold"
-                                initial={{ width: 0, opacity: 0 }}
-                                animate={{
-                                    width: isHovered ? "auto" : 0,
-                                    opacity: isHovered ? 1 : 0
-                                }}
-                            >
-                                View Opportunity
-                            </motion.span>
-                        </AnimatePresence>
-                        <ArrowUpRight className="w-5 h-5" />
-                    </motion.button>
-                </div>
+                            animate={{
+                                scale: 1,
+                                opacity: 1
+                            }}
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.95 }}
+                        >
+                            <AnimatePresence>
+                                <motion.span
+                                    className="hidden lg:block overflow-hidden whitespace-nowrap text-sm font-bold"
+                                    initial={{ width: 0, opacity: 0 }}
+                                    animate={{
+                                        width: isHovered ? "auto" : 0,
+                                        opacity: isHovered ? 1 : 0
+                                    }}
+                                >
+                                    View Opportunity
+                                </motion.span>
+                            </AnimatePresence>
+                            <ArrowUpRight className="w-5 h-5" />
+                        </motion.button>
+                    </div>
 
-                {/* Bottom: Text Content */}
-                <div className="pointer-events-auto flex flex-col gap-4">
-                    <div>
-                        <div className="flex flex-wrap gap-2 mb-3">
-                            {card.tags.map((tag, i) => (
-                                <span key={i} className="text-[10px] uppercase tracking-wide font-semibold text-white/70 bg-white/10 px-2 py-0.5 rounded-sm">
-                                    {tag}
-                                </span>
-                            ))}
-                        </div>
-                        <h3 className={`
+                    {/* Bottom: Text Content */}
+                    <div className="pointer-events-auto flex flex-col gap-4">
+                        <div>
+                            <div className="flex flex-wrap gap-2 mb-3">
+                                {card.tags.map((tag, i) => (
+                                    <span key={i} className="text-[10px] uppercase tracking-wide font-semibold text-white/70 bg-white/10 px-2 py-0.5 rounded-sm">
+                                        {tag}
+                                    </span>
+                                ))}
+                            </div>
+                            <h3 className={`
                         text-2xl md:text-3xl font-bold tracking-tight leading-tight transition-colors duration-300
                         text-foreground group-hover:text-white
                         ${isHovered ? "text-white" : ""}
                     `}>
-                            {card.title}
-                        </h3>
+                                {card.title}
+                            </h3>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </motion.div >
+            </motion.div >
+        </Link>
     );
 }

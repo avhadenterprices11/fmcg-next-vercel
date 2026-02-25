@@ -5,6 +5,7 @@ import { motion, useScroll, useTransform, useSpring, MotionValue, useMotionValue
 import { ArrowUpRight, MoveRight, Minus } from "lucide-react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 import { impactShowcaseItems } from "../data/strategic-impact-showcase.data";
 import type { ImpactShowcaseItem } from "../types/strategic-impact-showcase.types";
 
@@ -108,7 +109,7 @@ const PremiumCategorySection = ({ item, index }: { item: ImpactShowcaseItem; ind
                         )}
 
                         <div className="pt-8">
-                            <InteractiveButton title="Explore Category" />
+                            <InteractiveButton title="Explore Category" href="/categories" />
                         </div>
                     </motion.div>
                 </div>
@@ -188,9 +189,9 @@ const PremiumCategorySection = ({ item, index }: { item: ImpactShowcaseItem; ind
     );
 };
 
-const InteractiveButton = ({ title }: { title: string }) => {
+const InteractiveButton = ({ title, href }: { title: string; href: string }) => {
     return (
-        <button className="group relative inline-flex items-center gap-4 py-3 pr-6 pl-0 outline-none cursor-pointer">
+        <Link href={href} className="group relative inline-flex items-center gap-4 py-3 pr-6 pl-0 outline-none cursor-pointer">
             <div className="relative flex items-center justify-center w-12 h-12 rounded-full border border-emerald-500/30 overflow-hidden bg-background group-hover:border-emerald-500 transition-colors duration-300">
                 <MoveRight className="w-5 h-5 text-emerald-600 dark:text-emerald-400 absolute transition-all duration-300 group-hover:translate-x-12" />
                 <MoveRight className="w-5 h-5 text-emerald-600 dark:text-emerald-400 absolute transition-all duration-300 -translate-x-12 group-hover:translate-x-0" />
@@ -198,7 +199,7 @@ const InteractiveButton = ({ title }: { title: string }) => {
             <span className="text-sm font-semibold tracking-widest uppercase text-foreground group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
                 {title}
             </span>
-        </button>
+        </Link>
     );
 }
 

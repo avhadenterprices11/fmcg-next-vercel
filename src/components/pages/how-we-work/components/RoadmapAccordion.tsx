@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "motion/react";
 import { Check, ArrowRight, ArrowDownRight, Info, ChevronDown } from "lucide-react";
 import type { StageData } from "../types/stage.types";
@@ -266,10 +267,10 @@ function MobileAccordionCard({
                             </div>
 
                             {/* CTA Button */}
-                            <button className="mt-4 w-full flex items-center justify-center gap-2 py-3 bg-foreground text-background rounded-xl font-bold text-sm active:scale-[0.98] transition-transform touch-manipulation">
+                            <Link href="/contact" className="mt-4 w-full flex items-center justify-center gap-2 py-3 bg-foreground text-background rounded-xl font-bold text-sm active:scale-[0.98] transition-transform touch-manipulation">
                                 Inquire About This Stage
                                 <ArrowDownRight className="w-4 h-4" />
-                            </button>
+                            </Link>
                         </div>
                     </motion.div>
                 )}
@@ -431,10 +432,10 @@ function DesktopAccordionCard({
                     {/* Footer */}
                     <div className="mt-8 pt-6 border-t border-border flex items-center justify-between">
                         <span className="text-sm text-muted-foreground/70 font-medium">Stage {stage.number} of 05</span>
-                        <button className="flex items-center gap-2 text-foreground font-bold text-sm md:text-base transition-all">
+                        <Link href="/contact" className="flex items-center gap-2 text-foreground font-bold text-sm md:text-base transition-all hover:text-emerald-600">
                             Inquire About This Stage
                             <ArrowDownRight className="w-4 h-4" />
-                        </button>
+                        </Link>
                     </div>
                 </div>
             </motion.div>
