@@ -241,11 +241,11 @@ export const BRANDS: Brand[] = [
         country: 'Scotland',
         countryCode: 'scotland',
         positioning: 'Premium Export',
-        image: '/categories/Spirits/Whisky/Scotch Whisky.png',
+        image: '/brands/Highland/Highland.jpg',
         description: 'A classic Highland single malt with rich heritage and global recognition.',
         tradeCapabilities: { exportAvailable: true, privateLabel: false, ukDistribution: true, euDistribution: true, onTradeFocused: true, offTradeFocused: true },
         products: [
-            { name: '12 Year Old Single Malt', image: '/categories/Spirits/Whisky/Scotch Whisky.png', abv: '40%', size: '70cl', description: 'Rich fruit and spice.' }
+            { name: '12 Year Old Single Malt', image: '/brands/Highland/12 Year Old Single Malt.jpg', abv: '40%', size: '70cl', description: 'Rich fruit and spice.' }
         ]
     },
     {
@@ -257,11 +257,11 @@ export const BRANDS: Brand[] = [
         country: 'Ireland',
         countryCode: 'ireland',
         positioning: 'Hospitality Core',
-        image: '/categories/Spirits/Whisky/Jameson Irish Whiskey.webp',
+        image: '/brands/Dublin Oak/Dublin Oak.webp',
         description: 'Triple-distilled Irish whiskey with smooth character.',
         tradeCapabilities: { exportAvailable: true, privateLabel: false, ukDistribution: true, euDistribution: true, onTradeFocused: true, offTradeFocused: true },
         products: [
-            { name: 'Original Blend', image: '/categories/Spirits/Whisky/Jameson Irish Whiskey.webp', abv: '40%', size: '70cl', description: 'Triple distilled smoothness.' }
+            { name: 'Original Blend', image: '/brands/Dublin Oak/Dublin Oak.webp', abv: '40%', size: '70cl', description: 'Triple distilled smoothness.' }
         ]
     },
     {
@@ -273,7 +273,7 @@ export const BRANDS: Brand[] = [
         country: 'United States',
         countryCode: 'usa',
         positioning: 'Market Entry',
-        image: '/categories/Spirits/Whisky/Jim beam amwrican whicsky.jpg',
+        image: '/brands/Kentucky Heritage/Kentucky Heritage.webp',
         description: 'Small-batch Kentucky bourbon with growing demand in European markets.',
         tradeCapabilities: { exportAvailable: true, privateLabel: false, ukDistribution: true, euDistribution: true, onTradeFocused: true, offTradeFocused: true },
         products: []
@@ -287,7 +287,7 @@ export const BRANDS: Brand[] = [
         country: 'Japan',
         countryCode: 'japan',
         positioning: 'Super Premium',
-        image: '/categories/Spirits/Whisky/Hibiki japnees Whisky.jpg',
+        image: '/brands/Tokyo Single Malt/Tokyo Single Malt.jpg',
         description: 'Precision-crafted Japanese single malt with delicate balance.',
         tradeCapabilities: { exportAvailable: true, privateLabel: false, ukDistribution: true, euDistribution: true, onTradeFocused: true, offTradeFocused: false },
         products: []
@@ -337,11 +337,11 @@ export const BRANDS: Brand[] = [
         country: 'United Kingdom',
         countryCode: 'uk',
         positioning: 'Premium Cocktail',
-        image: '/categories/Spirits/Rum/Spiced rum.jpg',
+        image: '/brands/Caribbean Gold Rum/Caribbean Gold Rum 1.jpg',
         description: 'Caribbean-style rum with UK distribution. Ideal for premium cocktail programs.',
         tradeCapabilities: { exportAvailable: true, privateLabel: false, ukDistribution: true, euDistribution: true, onTradeFocused: true, offTradeFocused: false },
         products: [
-            { name: 'Spiced Gold', image: '/categories/Spirits/Rum/Spiced rum.jpg', abv: '37.5%', size: '70cl', description: 'Smooth spiced rum for mixing.' }
+            { name: 'Spiced Gold', image: '/brands/Caribbean Gold Rum/Spiced Gold.jpg', abv: '37.5%', size: '70cl', description: 'Smooth spiced rum for mixing.' }
         ]
     },
     {
@@ -371,11 +371,11 @@ export const BRANDS: Brand[] = [
         country: 'United Kingdom',
         countryCode: 'uk',
         positioning: 'Premium Craft',
-        image: '/categories/Spirits/Gin/London Dry (Gin).jpg',
+        image: '/brands/Artisan/Artisan.jpeg',
         description: 'A contemporary London Dry gin with a focus on botanical complexity.',
         tradeCapabilities: { exportAvailable: true, privateLabel: false, ukDistribution: true, euDistribution: true, onTradeFocused: true, offTradeFocused: false },
         products: [
-            { name: 'London Dry Gin', image: '/categories/Spirits/Gin/London Dry (Gin).jpg', abv: '42%', size: '70cl', description: 'Classic juniper-forward gin.' }
+            { name: 'London Dry Gin', image: '/brands/Artisan/London Dry Gin.jpg', abv: '42%', size: '70cl', description: 'Classic juniper-forward gin.' }
         ]
     },
     {
@@ -387,7 +387,7 @@ export const BRANDS: Brand[] = [
         country: 'Scotland',
         countryCode: 'scotland',
         positioning: 'Small Batch',
-        image: '/categories/Spirits/Gin/Flavoured Gin.webp',
+        image: '/brands/Highland/Highland.jpg',
         description: 'Distilled in the Scottish Highlands using wild botanicals.',
         tradeCapabilities: { exportAvailable: true, privateLabel: true, ukDistribution: true, euDistribution: true, onTradeFocused: true, offTradeFocused: true },
         products: []
