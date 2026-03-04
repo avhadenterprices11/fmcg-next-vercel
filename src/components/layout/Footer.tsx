@@ -52,10 +52,7 @@ const defaultSections = [
     {
         title: "POLICIES",
         links: [
-            { name: "Terms & Conditions", href: "/terms" },
-            { name: "Delivery & Returns", href: "/delivery-returns" },
-            { name: "Cookie Policy", href: "/cookie-policy" },
-            { name: "Short Date & Clearance", href: "/clearance" },
+            { name: "Privacy Policy", href: "/privacy-policy" },
         ],
         isDark: true, // Special flag for dark styling
     },
@@ -69,7 +66,6 @@ const defaultSocialLinks = [
 ];
 
 const defaultLegalLinks = [
-    { name: "Terms and Conditions", href: "/terms" },
     { name: "Privacy Policy", href: "/privacy-policy" },
 ];
 
