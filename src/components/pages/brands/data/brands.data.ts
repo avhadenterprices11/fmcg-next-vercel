@@ -9,21 +9,21 @@ export const BRANDS: Brand[] = [
         countryCode: 'uk',
         positioning: 'Premium craft gin for cocktail and on-trade programs.',
         category: 'Gin',
-        image: '/brands/Artisan/Artisan.jpeg',
+        image: '/categories/Hendricks London Dry Gin.webp',
         description: 'A contemporary London Dry gin with a focus on botanical complexity and mixability. Designed for premium cocktail programs and discerning on-trade partners.\n\nBest Trade Use:\nMost commonly discussed for premium on-trade programs, export portfolio building.',
         categoryFit: ['Gin', 'Spirits'],
         tradeCapabilities: { exportAvailable: true, privateLabel: false, ukDistribution: true, euDistribution: true, onTradeFocused: true, offTradeFocused: false },
         products: [
             {
                 name: 'London Dry Gin',
-                image: '/brands/Artisan/London Dry Gin.jpg',
+                image: 'https://images.unsplash.com/photo-1597075687490-8f673c6c17f6?auto=format&fit=crop&q=80&w=400',
                 abv: '42%',
                 size: '70cl',
                 description: 'Classic juniper-forward gin with citrus notes.'
             },
             {
                 name: 'Pink Grapefruit Gin',
-                image: '/brands/Artisan/Pink Grapefruit Gin.jpg',
+                image: 'https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&q=80&w=400',
                 abv: '40%',
                 size: '70cl',
                 description: 'Zesty refreshing gin with natural grapefruit infusion.'
@@ -85,14 +85,14 @@ export const BRANDS: Brand[] = [
         countryCode: 'scotland',
         positioning: 'Scottish craft gin with wild botanicals.',
         category: 'Gin',
-        image: '/brands/Highland/Highland.jpg',
+        image: '/categories/Hendricks London Dry Gin.webp',
         description: 'Distilled in the Scottish Highlands using wild botanicals and traditional methods. Suitable for export markets and premium hospitality trade.',
         categoryFit: ['Gin', 'Spirits'],
         tradeCapabilities: { exportAvailable: true, privateLabel: true, ukDistribution: true, euDistribution: true, onTradeFocused: true, offTradeFocused: true },
         products: [
             {
                 name: 'Highland Wild Gin',
-                image: '/brands/Highland/Highland.jpg',
+                image: 'https://images.unsplash.com/photo-1614313511387-1436a4480ebb?auto=format&fit=crop&q=80&w=400',
                 abv: '43%',
                 size: '70cl',
                 description: 'Distilled with hand-foraged heather and bog myrtle.'
@@ -109,14 +109,14 @@ export const BRANDS: Brand[] = [
         countryCode: 'spain',
         positioning: 'Mediterranean-inspired gin for export.',
         category: 'Gin',
-        image: '/brands/Mediterranean/Mediterranean.webp',
+        image: 'https://images.unsplash.com/photo-1606131731446-5568d87113aa?auto=format&fit=crop&q=80&w=800',
         description: 'A Spanish gin featuring Mediterranean citrus and herbs. Strong presence in EU markets with growing export potential.',
         categoryFit: ['Gin', 'Spirits'],
         tradeCapabilities: { exportAvailable: true, privateLabel: false, ukDistribution: true, euDistribution: true, onTradeFocused: false, offTradeFocused: true },
         products: [
             {
                 name: 'Citrus Edition',
-                image: '/brands/Mediterranean/Mediterranean.webp',
+                image: 'https://images.unsplash.com/photo-1606131731446-5568d87113aa?auto=format&fit=crop&q=80&w=400',
                 abv: '40%',
                 size: '70cl',
                 description: 'Infused with Seville oranges and lemons.'
@@ -135,21 +135,21 @@ export const BRANDS: Brand[] = [
         countryCode: 'scotland',
         positioning: 'Premium Scotch whisky for export.',
         category: 'Whisky',
-        image: '/brands/Highland/Highland.jpg',
+        image: '/categories/Johnnie Walker Black  Label Scotch Whisky.webp',
         description: 'A classic Highland single malt with rich heritage and global recognition. Ideal for market entry and premium trade.',
         categoryFit: ['Whisky', 'Spirits'],
         tradeCapabilities: { exportAvailable: true, privateLabel: false, ukDistribution: true, euDistribution: true, onTradeFocused: true, offTradeFocused: true },
         products: [
             {
                 name: '12 Year Old Single Malt',
-                image: '/brands/Highland/12 Year Old Single Malt.jpg',
+                image: 'https://images.unsplash.com/photo-1598155523122-38423bb4d6c1?auto=format&fit=crop&q=80&w=400',
                 abv: '40%',
                 size: '70cl',
                 description: 'Rich fruit and spice notes with a smooth finish.'
             },
             {
                 name: '18 Year Old Reserve',
-                image: '/brands/Highland/18 Year Old Reserve.webp',
+                image: 'https://images.unsplash.com/photo-1527281400683-1a22129e8756?auto=format&fit=crop&q=80&w=400',
                 abv: '43%',
                 size: '70cl',
                 description: 'Complex oak and sherry character.'
@@ -166,14 +166,14 @@ export const BRANDS: Brand[] = [
         countryCode: 'ireland',
         positioning: 'Irish whiskey for hospitality.',
         category: 'Whisky',
-        image: '/brands/Dublin Oak/Dublin Oak.webp',
+        image: '/categories/Jameson Irish Whiskey.webp',
         description: 'Triple-distilled Irish whiskey with smooth character. Strong performance in on-trade and premium retail channels.',
         categoryFit: ['Whisky', 'Spirits'],
         tradeCapabilities: { exportAvailable: true, privateLabel: false, ukDistribution: true, euDistribution: true, onTradeFocused: true, offTradeFocused: true },
         products: [
             {
                 name: 'Original Blend',
-                image: '/brands/Dublin Oak/Dublin Oak.webp',
+                image: 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=80&w=400',
                 abv: '40%',
                 size: '70cl',
                 description: 'Triple distilled for exceptional smoothness.'
@@ -190,14 +190,14 @@ export const BRANDS: Brand[] = [
         countryCode: 'usa',
         positioning: 'American bourbon for UK and EU market entry.',
         category: 'Whisky',
-        image: '/brands/Kentucky Heritage/Kentucky Heritage.webp',
+        image: '/categories/Jack Daniels Tennessee  American Whiskey.webp',
         description: 'Small-batch Kentucky bourbon with growing demand in European markets. Suitable for premium hospitality and retail.',
         categoryFit: ['Whisky', 'Spirits'],
         tradeCapabilities: { exportAvailable: true, privateLabel: false, ukDistribution: true, euDistribution: true, onTradeFocused: true, offTradeFocused: true },
         products: [
             {
                 name: 'Small Batch Bourbon',
-                image: '/brands/Kentucky Heritage/Small Batch Bourbon.webp',
+                image: 'https://images.unsplash.com/photo-1598155523122-38423bb4d6c1?auto=format&fit=crop&q=80&w=400',
                 abv: '45%',
                 size: '70cl',
                 description: 'Rich vanilla and caramel notes.'
@@ -214,14 +214,14 @@ export const BRANDS: Brand[] = [
         countryCode: 'japan',
         positioning: 'Japanese whisky for premium trade.',
         category: 'Whisky',
-        image: '/brands/Tokyo Single Malt/Tokyo Single Malt.jpg',
+        image: '/categories/Spirits/Hibiki japnees Whisky.jpg',
         description: 'Precision-crafted Japanese single malt with delicate balance. High demand in premium hospitality and specialist retail.',
         categoryFit: ['Whisky', 'Spirits'],
         tradeCapabilities: { exportAvailable: true, privateLabel: false, ukDistribution: true, euDistribution: true, onTradeFocused: true, offTradeFocused: false },
         products: [
             {
                 name: 'Mizunara Cask Finish',
-                image: '/brands/Tokyo Single Malt/Mizunara Cask Finish.jpg',
+                image: 'https://images.unsplash.com/photo-1608649437172-e64e52579308?auto=format&fit=crop&q=80&w=400',
                 abv: '46%',
                 size: '70cl',
                 description: 'Finished in rare Japanese Mizunara oak.'
@@ -240,7 +240,7 @@ export const BRANDS: Brand[] = [
         countryCode: 'france',
         positioning: 'Premium Champagne for hospitality.',
         category: 'Champagne & Sparkling',
-        image: '/brands/Catalan Cava/Catalan Cava.webp',
+        image: '/categories/Veuve Clicquot GB Champagne.webp',
         description: 'Traditional Champagne house with heritage and quality. Strong in hospitality trade and corporate gift programs.',
         categoryFit: ['Champagne & Sparkling', 'Wine & Champagne'],
         tradeCapabilities: { exportAvailable: true, privateLabel: false, ukDistribution: true, euDistribution: true, onTradeFocused: true, offTradeFocused: true },
@@ -271,7 +271,7 @@ export const BRANDS: Brand[] = [
         countryCode: 'italy',
         positioning: 'Italian Prosecco for bulk trade.',
         category: 'Champagne & Sparkling',
-        image: '/brands/Catalan Cava/Catalan Cava.webp',
+        image: '/categories/Champagne & Sparkling/Sparkling Wine.webp',
         description: 'DOC Prosecco from Veneto region. Available for bulk trade, private label, and high-volume hospitality supply.',
         categoryFit: ['Champagne & Sparkling', 'Wine & Champagne'],
         tradeCapabilities: { exportAvailable: true, privateLabel: true, ukDistribution: true, euDistribution: true, onTradeFocused: true, offTradeFocused: true },
@@ -289,14 +289,14 @@ export const BRANDS: Brand[] = [
         countryCode: 'italy',
         positioning: 'Premium Italian red wine.',
         category: 'Red Wine',
-        image: '/brands/Tuscan Heritage/Tuscan Heritage.webp',
+        image: '/categories/Wine & Champagne/REd Wine.webp',
         description: 'Tuscan red wines with regional authenticity. Suitable for premium hospitality, retail, and export programs.',
         categoryFit: ['Red Wine', 'Wine & Champagne'],
         tradeCapabilities: { exportAvailable: true, privateLabel: false, ukDistribution: true, euDistribution: true, onTradeFocused: true, offTradeFocused: true },
         products: [
             {
                 name: 'Chianti Classico',
-                image: '/brands/Tuscan Heritage/Tuscan Heritage.webp',
+                image: 'https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?auto=format&fit=crop&q=80&w=400',
                 abv: '13.5%',
                 size: '75cl',
                 description: 'Notes of cherry and earth.'
@@ -315,14 +315,14 @@ export const BRANDS: Brand[] = [
         countryCode: 'uk',
         positioning: 'Premium aged rum for cocktails.',
         category: 'Rum',
-        image: '/brands/Caribbean Gold Rum/Caribbean Gold Rum 1.jpg',
+        image: '/categories/Captain Morgan Spiced Rum.jpg',
         description: 'Caribbean-style rum with UK distribution. Ideal for premium cocktail programs and hospitality trade.',
         categoryFit: ['Rum', 'Spirits'],
         tradeCapabilities: { exportAvailable: true, privateLabel: false, ukDistribution: true, euDistribution: true, onTradeFocused: true, offTradeFocused: false },
         products: [
             {
                 name: 'Spiced Gold',
-                image: '/brands/Caribbean Gold Rum/Spiced Gold.jpg',
+                image: 'https://images.unsplash.com/photo-1619451334792-150fd785ee74?auto=format&fit=crop&q=80&w=400',
                 abv: '37.5%',
                 size: '70cl',
                 description: 'Smooth spiced rum for mixing.'
@@ -341,14 +341,14 @@ export const BRANDS: Brand[] = [
         countryCode: 'uk',
         positioning: 'Premium RTD cocktails.',
         category: 'Ready Made Cocktails',
-        image: '/brands/Botanical Roots/Elderflower Tonic.jpg',
+        image: '/categories/Cocktail Mixers & Tonics/photo-1693479302024-660177a556d5.jpg',
         description: 'Ready-to-drink cocktails made with premium spirits. Designed for on-trade, events, and convenience retail.',
         categoryFit: ['Ready Made Cocktails', 'Cocktail, Mixers & Tonics'],
         tradeCapabilities: { exportAvailable: true, privateLabel: true, ukDistribution: true, euDistribution: true, onTradeFocused: true, offTradeFocused: true },
         products: [
             {
                 name: 'Espresso Martini',
-                image: '/brands/Botanical Roots/Elderflower Tonic.jpg',
+                image: 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=80&w=400',
                 abv: '5%',
                 size: '250ml',
                 description: 'Rich coffee flavor in a convenient can.'
@@ -573,12 +573,12 @@ export const BRANDS: Brand[] = [
         countryCode: 'new-zealand',
         positioning: 'Export Grade Sauvignon',
         category: 'White Wine',
-        image: '/brands/Marlborough/Marlborough.webp',
+        image: '/categories/Wine & Champagne/Sauvignon Blanco.webp',
         description: 'Zesty, tropical New Zealand Sauvignon Blanc designed for the international palate.',
         categoryFit: ['White Wine', 'Wine & Champagne'],
         tradeCapabilities: { exportAvailable: true, privateLabel: true, ukDistribution: true, euDistribution: true, onTradeFocused: true, offTradeFocused: true },
         products: [
-            { name: 'Estate Sauvignon Blanc', image: '/brands/Marlborough/Estate Sauvignon Blanc.webp', abv: '12.5%', size: '75cl', description: 'Passionfruit and gooseberry notes.' }
+            { name: 'Estate Sauvignon Blanc', image: 'https://images.unsplash.com/photo-1585553616435-2dc0a54e271d?auto=format&fit=crop&q=80&w=400', abv: '12.5%', size: '75cl', description: 'Passionfruit and gooseberry notes.' }
         ],
         portfolioRanges: [],
         marketConsiderations: [],
