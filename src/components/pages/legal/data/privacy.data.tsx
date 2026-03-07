@@ -1,134 +1,120 @@
-import { Cookie, Info, ShieldCheck, Mail, Settings } from "lucide-react";
+import { Eye, FileCheck, Lock, Users, Globe } from "lucide-react";
 import { LegalSection } from "../types/legal.types";
 
 export const PRIVACY_SECTIONS: LegalSection[] = [
     {
-        id: "website-cookies",
-        title: "Website Cookies",
-        icon: <Cookie className="w-5 h-5" />,
+        id: "collection",
+        title: "Information We Collect",
+        icon: <Eye className="w-5 h-5" />,
         content: (
             <>
-                <p>
-                    This website uses cookies to store information on your computer. Some of these cookies are essential to make our site work, and others help us improve our website by giving us insights into site use.
+                <p>We collect information that you provide directly to us, including:</p>
+                <ul className="list-disc pl-6 space-y-2 marker:text-emerald-500">
+                    <li>Contact information (name, email address, phone number)</li>
+                    <li>Business information (company name, industry, trade requirements)</li>
+                    <li>Communication preferences and inquiry details</li>
+                    <li>Account credentials for registered users</li>
+                </ul>
+                <p className="mt-4 text-muted-foreground">
+                    We also automatically collect certain information when you visit our website, such as IP address, browser type, device information, and usage patterns.
                 </p>
             </>
         )
     },
     {
-        id: "what-are-cookies",
-        title: "What are Cookies?",
-        icon: <Info className="w-5 h-5" />,
+        id: "usage",
+        title: "How We Use Your Information",
+        icon: <FileCheck className="w-5 h-5" />,
+        content: (
+            <>
+                <p>We use the information we collect to:</p>
+                <ul className="list-disc pl-6 space-y-2 marker:text-emerald-500">
+                    <li>Process and respond to your trade inquiries</li>
+                    <li>Facilitate connections with brand owners and distribution partners</li>
+                    <li>Provide market intelligence and trade coordination services</li>
+                    <li>Send you relevant business updates and communications</li>
+                    <li>Improve our services and user experience</li>
+                    <li>Ensure security and prevent fraud</li>
+                    <li>Comply with legal obligations and industry regulations</li>
+                </ul>
+            </>
+        )
+    },
+    {
+        id: "security",
+        title: "Data Security",
+        icon: <Lock className="w-5 h-5" />,
         content: (
             <>
                 <p>
-                    Cookies are small pieces of information that a website stores on your computer. They are often there to make your browsing experience more enjoyable or to gather information about the site user’s behaviour. There are two types of cookie:
+                    We implement appropriate technical and organizational security measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction. This includes:
                 </p>
-                <div className="space-y-4 mt-4">
-                    <div>
-                        <p className="font-bold text-emerald-600 dark:text-emerald-400">Session Cookies</p>
-                        <p className="text-muted-foreground text-sm">
-                            These cookie files are erased when you close your browser. This cookie stores your browsing information and will be active until you leave a site and close your browser.
-                        </p>
-                    </div>
-                    <div>
-                        <p className="font-bold text-emerald-600 dark:text-emerald-400">Persistent Cookies</p>
-                        <p className="text-muted-foreground text-sm">
-                            These files stay in one of a browser’s subfolder until they are deleted manually or your browser deletes them based on the duration period contained within the persistent cookie’s file. You can set your browser to automatically remove these cookies on login off.
-                        </p>
-                    </div>
+                <ul className="list-disc pl-6 space-y-2 marker:text-emerald-500">
+                    <li>Encryption of data in transit and at rest</li>
+                    <li>Regular security assessments and updates</li>
+                    <li>Access controls and authentication requirements</li>
+                    <li>Secure data storage and backup procedures</li>
+                </ul>
+                <div className="bg-amber-50 dark:bg-amber-950/20 border-l-4 border-amber-500 p-6 my-6 text-amber-900 dark:text-amber-200 text-sm">
+                    However, no method of transmission over the Internet is 100% secure. We cannot guarantee absolute security but are committed to protecting your information.
                 </div>
-                <p className="mt-4 text-sm italic">
-                    More Information: <a href="https://www.allaboutcookies.org/" target="_blank" rel="noopener noreferrer" className="text-emerald-600 hover:underline">Read all about cookies here &gt;</a>
+            </>
+        )
+    },
+    {
+        id: "sharing",
+        title: "Information Sharing",
+        icon: <Users className="w-5 h-5" />,
+        content: (
+            <>
+                <p>We may share your information in the following circumstances:</p>
+                <ul className="list-disc pl-6 space-y-2 marker:text-emerald-500">
+                    <li><strong>With Trade Partners:</strong> When facilitating business connections, we share relevant information with brand owners and distribution partners</li>
+                    <li><strong>Service Providers:</strong> We engage trusted third-party service providers to support our operations</li>
+                    <li><strong>Legal Requirements:</strong> We may disclose information when required by law or to protect our rights</li>
+                    <li><strong>Business Transfers:</strong> In the event of a merger, acquisition, or sale of assets</li>
+                </ul>
+                <p className="mt-4 font-bold text-emerald-700 dark:text-emerald-400">
+                    We do not sell your personal information to third parties.
                 </p>
             </>
         )
     },
     {
-        id: "cookies-usage",
-        title: "What are Cookies used for?",
-        icon: <ShieldCheck className="w-5 h-5" />,
+        id: "rights",
+        title: "Your Rights",
+        icon: <Globe className="w-5 h-5" />,
         content: (
             <>
-                <p>
-                    Cookies are an important part of the internet. They make using our website much smoother and affect lots of the useful features of the website.
+                <p>Depending on your location, you may have certain rights regarding your personal information, including:</p>
+                <ul className="list-disc pl-6 space-y-2 marker:text-emerald-500">
+                    <li>The right to access your personal information</li>
+                    <li>The right to correct inaccurate or incomplete information</li>
+                    <li>The right to request deletion of your information</li>
+                    <li>The right to object to or restrict certain processing activities</li>
+                    <li>The right to data portability</li>
+                    <li>The right to withdraw consent</li>
+                </ul>
+                <p className="mt-4 text-muted-foreground">
+                    To exercise any of these rights, please contact us at <a href="mailto:privacy@osmo.com" className="text-emerald-600 dark:text-emerald-400 underline decoration-emerald-500/20 underline-offset-4 hover:decoration-emerald-500">privacy@osmo.com</a>
                 </p>
             </>
         )
     },
     {
-        id: "specific-cookies",
-        title: "What Cookies does FMCG Next use?",
-        icon: <Settings className="w-5 h-5" />,
-        content: (
-            <div className="space-y-8">
-                <div>
-                    <h4 className="font-bold text-lg mb-2">Google Analytics</h4>
-                    <p className="text-sm text-muted-foreground mb-2">
-                        <strong>Cookie Details:</strong> _utma, _utmb, _utmc_utmz
-                    </p>
-                    <p className="text-sm">
-                        <strong>Cookie Purpose:</strong> We anonymously keep track of user behaviour to help us keep our site content relevant and easy to find. It’s also useful to identify trends and patterns of how people navigate through our site.
-                    </p>
-                    <p className="mt-2 text-sm italic">
-                        More Information: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-emerald-600 hover:underline">View a Google privacy overview here &gt;</a>
-                    </p>
-                </div>
-
-                <div>
-                    <h4 className="font-bold text-lg mb-2">Hot Jar</h4>
-                    <p className="text-sm text-muted-foreground mb-2">
-                        <strong>Cookie Details:</strong> hjSiteLang, X-Access-Key, JSESSIONID, NREUM, NRAGENT, _ga
-                    </p>
-                    <p className="text-sm">
-                        <strong>Cookie Purpose:</strong> We anonymously keep track of user behaviour to help us keep our site content relevant and easy to find. It’s also useful to identify trends and patterns of how people navigate through our site.
-                    </p>
-                    <p className="mt-2 text-sm italic">
-                        More Information: <a href="https://www.hotjar.com/legal/policies/privacy/" target="_blank" rel="noopener noreferrer" className="text-emerald-600 hover:underline">View further information on Hot Jar here &gt;</a>
-                    </p>
-                </div>
-
-                <div>
-                    <h4 className="font-bold text-lg mb-2">Add This Social Sharing</h4>
-                    <p className="text-sm text-muted-foreground mb-2">
-                        <strong>Cookie Details:</strong> __atuvc
-                    </p>
-                    <p className="text-sm">
-                        <strong>Cookie Purpose:</strong> Enabling you to share stories and page content via social media components, like Facebook and Twitter.
-                    </p>
-                </div>
-            </div>
-        )
-    },
-    {
-        id: "disabling-cookies",
-        title: "How to turn cookies off",
+        id: "contact",
+        title: "Contact Us",
         content: (
             <>
-                <p className="mb-4">If you do not want these cookies to be used, you can turn cookies off in your browser by following these steps:</p>
-                <ol className="list-decimal pl-6 space-y-2 text-sm">
-                    <li>Click Tools &amp; select Options.</li>
-                    <li>Click the Privacy tab, and select Advanced.</li>
-                    <li>Click Override automatic cookie handling.</li>
-                    <li>Specify how you wish to handle cookies from first-party Websites and third-party Websites.</li>
-                </ol>
-            </>
-        )
-    },
-    {
-        id: "email-communications",
-        title: "E-Mail communications – Privacy Policy",
-        icon: <Mail className="w-5 h-5" />,
-        content: (
-            <>
-                <p className="mb-4">We use open tracking to track performance of email campaigns.</p>
-                <p className="mb-4">
-                    By signing up to receive our e-mail communications you accept when we send you email campaigns, an open tracker will be added to each email. An open tracker is a tiny, invisible graphic embedded to the bottom of the HTML email, unique to each campaign sent.
-                </p>
                 <p>
-                    Every time the email is opened, the open-tracker graphic is downloaded and allows us to track opens and any links clicked.
+                    If you have any questions, concerns, or requests regarding this Privacy Policy or our data practices, please contact us:
                 </p>
+                <div className="bg-card text-card-foreground rounded-xl p-8 mt-6 border border-border shadow-sm">
+                    <p className="font-bold text-lg mb-2 text-emerald-500">OSMO Privacy Team</p>
+                    <p className="text-muted-foreground">Email: privacy@osmo.com</p>
+                    <p className="text-muted-foreground">Address: [Your Business Address]</p>
+                </div>
             </>
         )
     }
 ];
-
