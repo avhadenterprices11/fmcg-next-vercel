@@ -109,7 +109,7 @@ function TradeOpportunityCardComponent({
     };
 
     return (
-        <Link href="/trade-opportunities" className="block">
+        <Link href="#footer" className="block">
             <motion.div
                 ref={containerRef}
                 tabIndex={-1}
@@ -123,8 +123,8 @@ function TradeOpportunityCardComponent({
           border border-border bg-card shadow-sm hover:shadow-2xl
       `}
                 animate={{
-                    opacity: isDimmed ? 0.6 : 1,
-                    filter: isDimmed ? "grayscale(100%) brightness(0.9)" : "grayscale(0%)"
+                    opacity: isHovered ? 1 : 0.95,
+                    filter: isHovered ? "grayscale(0%)" : "grayscale(30%) brightness(0.8)"
                 }}
                 layout
             >
@@ -133,9 +133,9 @@ function TradeOpportunityCardComponent({
                     className="absolute inset-0 z-0 bg-black/90"
                     initial={false}
                     animate={{
-                        opacity: isHovered ? 1 : 0
+                        opacity: 1
                     }}
-                    transition={{ duration: 0.5 }}
+                    transition={{ duration: 0.8 }}
                 >
                     <motion.div
                         className="w-full h-full relative"
@@ -146,7 +146,7 @@ function TradeOpportunityCardComponent({
                             src={card.image}
                             alt={card.title}
                             fill
-                            className="object-cover opacity-60"
+                            className="object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-700"
                             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         />
                     </motion.div>

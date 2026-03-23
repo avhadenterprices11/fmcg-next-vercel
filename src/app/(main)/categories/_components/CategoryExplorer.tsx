@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import { useSearchParams, useRouter } from 'next/navigation';
 import { AnimatePresence, motion } from 'framer-motion';
 import { CATEGORIES } from './data';
 import { CategoryTier1, CategoryTier2, CategoryTier3 } from './types';
@@ -21,12 +22,24 @@ export const CategoryExplorer = () => {
     const [viewState, setViewState] = useState<ViewState>({ type: 'TIER1' });
     const [hoveredTier1, setHoveredTier1] = useState<CategoryTier1 | null>(null);
     const [isRestored, setIsRestored] = useState(false);
+    const searchParams = useSearchParams();
+    const router = useRouter();
 
     const containerRef = useRef<HTMLDivElement>(null);
     const isFirstRender = useRef(true);
 
-    // Restore state from Session Storage on mount
+    // 1. Initial Load: Check for Search Params FIRST, then Session Storage
     useEffect(() => {
+        const categoryId = searchParams.get('category');
+        if (categoryId) {
+            const found = CATEGORIES.find(c => c.id === categoryId);
+            if (found) {
+                setViewState({ type: 'TIER2', tier1: found });
+                setIsRestored(true);
+                return;
+            }
+        }
+
         const savedState = sessionStorage.getItem('category_explorer_state');
         if (savedState) {
             try {
@@ -36,7 +49,7 @@ export const CategoryExplorer = () => {
             }
         }
         setIsRestored(true);
-    }, []);
+    }, [searchParams]);
 
     // Save state to Session Storage on change
     useEffect(() => {
@@ -74,7 +87,11 @@ export const CategoryExplorer = () => {
         }
     };
 
-    const handleHome = () => setViewState({ type: 'TIER1' });
+    const handleHome = () => {
+        setViewState({ type: 'TIER1' });
+        // Clear search params when going home to avoid sticky URL
+        router.push('/categories', { scroll: false });
+    };
 
     // Back handler (optional now, but kept for safety or mobile gestures)
     const handleBack = () => {

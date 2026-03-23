@@ -86,7 +86,7 @@ export const Footer = ({
 }: Footer7Props) => {
 
     return (
-        <footer className="bg-background pt-16 md:pt-24 min-h-screen flex flex-col relative z-50">
+        <footer id="footer" className="bg-background pt-16 md:pt-24 min-h-screen flex flex-col relative z-50">
             <div className="container mx-auto px-4 mb-12 md:mb-20 text-center">
                 <h2 className="text-4xl md:text-7xl font-bold text-foreground tracking-tighter mb-4 md:mb-6">
                     Global <span className="text-transparent bg-clip-text bg-linear-to-r from-emerald-600 to-teal-500">Connectivity.</span>
@@ -136,7 +136,7 @@ export const Footer = ({
                 {/* Desktop World Map Background Layer */}
                 {/* Desktop World Map Background Layer */}
                 <div className="absolute inset-0 z-0 pointer-events-none hidden md:flex items-center justify-center opacity-30 md:opacity-100">
-                    <div className="w-full max-w-[1600px] 3xl:max-w-[2400px] aspect-[2/1] flex items-center justify-center">
+                    <div className="w-full max-w-[1600px] 3xl:max-w-[2400px] aspect-2/1 flex items-center justify-center">
                         <WorldMap
                             className="w-full h-full"
                             dots={[

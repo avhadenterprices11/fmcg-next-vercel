@@ -14,4 +14,5 @@ export interface PackageCard {
     storage?: string;
     showCTA: boolean;
     color: string;
+    href?: string;
 }

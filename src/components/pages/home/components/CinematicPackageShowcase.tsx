@@ -109,7 +109,7 @@ function ContentBlock({ pkg, index, setActiveCard }: { pkg: PackageCard, index: 
                 </div>
 
                 {pkg.showCTA && (
-                    <CTAButton href="/how-we-work">
+                    <CTAButton href={pkg.href || "/how-we-work"}>
                         Explore {pkg.title.split(' ')[0]}
                         <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                     </CTAButton>

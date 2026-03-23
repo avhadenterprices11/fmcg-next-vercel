@@ -13,6 +13,7 @@ export const packages: PackageCard[] = [
         image: 'https://images.unsplash.com/photo-1597075687490-8f673c6c17f6?auto=format&fit=crop&q=80&w=1000',
         color: 'bg-amber-600',
         showCTA: true,
+        href: "/categories",
     },
     {
         id: 2,

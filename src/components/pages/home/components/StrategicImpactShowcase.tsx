@@ -109,14 +109,15 @@ const PremiumCategorySection = ({ item, index }: { item: ImpactShowcaseItem; ind
                         )}
 
                         <div className="pt-8">
-                            <InteractiveButton title="Explore Category" href="/categories" />
+                            <InteractiveButton title="Explore Category" href={item.link || "/categories"} />
                         </div>
                     </motion.div>
                 </div>
 
                 {/* Image Section */}
-                <div
-                    className="w-full md:w-7/12 h-[50vh] md:h-[80vh] relative group/image cursor-pointer"
+                <Link
+                    href={item.link || "/categories"}
+                    className="w-full md:w-7/12 h-[50vh] md:h-[80vh] relative group/image cursor-pointer block"
                     onMouseEnter={() => setIsHovered(true)}
                     onMouseLeave={() => setIsHovered(false)}
                     onMouseMove={(e) => {
@@ -183,7 +184,7 @@ const PremiumCategorySection = ({ item, index }: { item: ImpactShowcaseItem; ind
                             </div>
                         ))}
                     </div>
-                </div>
+                </Link>
             </div>
         </motion.div>
     );

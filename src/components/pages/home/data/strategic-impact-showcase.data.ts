@@ -12,7 +12,8 @@ export const impactShowcaseItems: ImpactShowcaseItem[] = [
             "Premium, craft & private‑label spirits"
         ],
         image: "/categories/Product Categories/Spirits.jpg",
-        tags: ["Premium", "Craft", "Global"]
+        tags: ["Premium", "Craft", "Global"],
+        link: "/categories?category=spirits"
     },
     {
         id: "wines-champagnes",
@@ -29,7 +30,8 @@ export const impactShowcaseItems: ImpactShowcaseItem[] = [
             { label: "Regions", value: "40+" },
             { label: "Vintages", value: "Premium" }
         ],
-        tags: ["Fine Wine", "Sparkling", "Cuvée"]
+        tags: ["Fine Wine", "Sparkling", "Cuvée"],
+        link: "/categories?category=wine"
     },
     {
         id: "beers-craft",
@@ -45,7 +47,8 @@ export const impactShowcaseItems: ImpactShowcaseItem[] = [
             { label: "Varieties", value: "500+" },
             { label: "Breweries", value: "150+" }
         ],
-        tags: ["Craft", "Lager", "Ale"]
+        tags: ["Craft", "Lager", "Ale"],
+        link: "/categories?category=beer"
     },
     {
         id: "speciality-beverages",
@@ -58,7 +61,8 @@ export const impactShowcaseItems: ImpactShowcaseItem[] = [
             "Alcohol‑free spirits alternatives"
         ],
         image: "/categories/Product Categories/Soft drink -Cocktail mixer tonic.jpg",
-        tags: ["Functional", "Mixers", "Zero-Alc"]
+        tags: ["Functional", "Mixers", "Zero-Alc"],
+        link: "/categories?category=cocktails"
     },
     {
         id: "food-grocery",
@@ -74,7 +78,8 @@ export const impactShowcaseItems: ImpactShowcaseItem[] = [
             { label: "SKUs", value: "2000+" },
             { label: "Reach", value: "Global" }
         ],
-        tags: ["Pantry", "Organic", "Staples"]
+        tags: ["Pantry", "Organic", "Staples"],
+        link: "/categories?category=food"
     }
 
 

@@ -4,90 +4,157 @@ import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { SEVORA_DATA } from "../data/sevora.data";
-import { Button } from "@/components/ui/button";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { CheckCircle2, Sparkles, ShieldCheck } from "lucide-react";
 
 export function ProductShowcase() {
   const { product } = SEVORA_DATA;
 
   return (
-    <section id="product" className="py-24 md:py-32 bg-white dark:bg-[#050a08] overflow-hidden">
+    <section id="product" className="py-24 md:py-48 bg-white dark:bg-[#020504] overflow-hidden">
       <div className="container mx-auto px-6">
-        <div className="bg-emerald-50/50 dark:bg-emerald-900/10 rounded-[4rem] p-12 md:p-20 border border-emerald-100 dark:border-emerald-800/30 overflow-hidden relative">
-          {/* Abstract Green Shape */}
-          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-emerald-500/5 rounded-full blur-[100px] translate-x-1/3 -translate-y-1/3" />
+        <div className="bg-emerald-50/30 dark:bg-emerald-950/20 rounded-[4rem] p-12 md:p-32 border border-emerald-500/10 overflow-hidden relative group/section shadow-4xl shadow-emerald-500/0 hover:shadow-emerald-500/5 transition-all duration-1000">
+          
+          {/* Volumetric BG Glow */}
+          <div className="absolute top-[-20%] right-[-10%] w-[60%] h-[60%] bg-emerald-500/5 rounded-full blur-[120px] pointer-events-none group-hover/section:bg-emerald-500/10 transition-colors duration-1000" />
+          <div className="absolute bottom-[-20%] left-[-10%] w-[40%] h-[40%] bg-emerald-500/5 rounded-full blur-[100px] pointer-events-none" />
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
-            {/* Image Column */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 md:gap-32 items-center relative z-10">
+            
+            {/* Image Stage */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, scale: 0.95, y: 30 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
               viewport={{ once: true }}
-              className="relative h-[400px] md:h-[600px] group"
+              className="relative h-[450px] md:h-[750px] flex items-center justify-center p-10"
             >
-              <Image
-                src={product.image}
-                alt={product.name}
-                fill
-                className="object-contain drop-shadow-[0_20px_40px_rgba(5,150,105,0.15)] group-hover:-translate-y-4 transition-transform duration-700"
-              />
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-emerald-500/10 rounded-full blur-[100px] -z-10" />
+              <div className="relative w-full h-full group">
+                  <Image
+                    src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?q=80&w=800&auto=format&fit=crop"
+                    alt={product.name}
+                    fill
+                    className="object-contain drop-shadow-[0_50px_100px_rgba(16,185,129,0.2)] group-hover:-translate-y-8 group-hover:rotate-2 transition-all duration-1000 scale-105"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                  />
+                  {/* Floating Particle Decor */}
+                  <div className="absolute top-1/4 -right-4 animate-float-slow">
+                       <Sparkles className="w-8 h-8 text-emerald-500/20" />
+                  </div>
+              </div>
             </motion.div>
 
-            {/* Content Column */}
-            <div className="flex flex-col space-y-8">
+            {/* Scientific Content Block */}
+            <div className="flex flex-col space-y-12">
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
               >
-                <h2 className="text-sm font-bold text-emerald-600 uppercase tracking-[0.3em] mb-4">
-                  The Product
-                </h2>
-                <h3 className="text-4xl md:text-6xl font-serif font-medium leading-[1.1] mb-6">
+                <div className="inline-flex items-center gap-2 mb-8 px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20">
+                    <ShieldCheck className="w-3 h-3 text-emerald-600" />
+                    <span className="text-[9px] font-black uppercase tracking-[0.4em] text-emerald-600">Premium Formula</span>
+                </div>
+                
+                <h3 className="text-4xl md:text-7xl font-serif font-medium leading-[0.9] text-foreground tracking-tighter mb-10">
                   {product.title}
                 </h3>
-                <p className="text-2xl font-bold text-foreground mb-8">
-                  {product.name}
-                </p>
+                
+                <div className="flex items-center gap-6 mb-12">
+                     <p className="text-2xl md:text-4xl font-serif font-bold text-foreground opacity-90 italic">
+                       {product.name}
+                     </p>
+                     <div className="h-px flex-1 bg-emerald-500/10" />
+                </div>
               </motion.div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-8">
                 {product.details.map((detail, i) => (
                   <motion.div
                     key={i}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ delay: i * 0.1 + 0.3 }}
-                    className="flex items-center gap-3 border-b border-border/50 pb-4"
+                    transition={{ delay: i * 0.1 }}
+                    className="flex flex-col gap-3 group"
                   >
-                    <CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0" />
-                    <span className="text-lg font-light text-foreground/80">{detail}</span>
+                    <div className="flex items-center gap-3">
+                         <CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0 group-hover:scale-125 transition-transform" />
+                         <span className="text-[9px] font-black uppercase tracking-[0.3em] text-emerald-600/60">Verified</span>
+                    </div>
+                    <span className="text-xl md:text-2xl font-serif italic text-foreground/80 leading-none">{detail}</span>
                   </motion.div>
                 ))}
               </div>
 
+              {/* UPGRADED BUTTON (SYNCHRONIZED WITH NAVIGATION LOGIN STYLE) */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: 0.7 }}
-                className="pt-8"
+                transition={{ delay: 0.5 }}
+                className="pt-12"
               >
-                <Button size="lg" className="h-16 px-12 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white text-xl font-bold group shadow-xl shadow-emerald-500/20">
+                <NavButtonStyle>
                   {product.cta}
-                  <ArrowRight className="ml-2 w-6 h-6 group-hover:translate-x-1 transition-transform" />
-                </Button>
-                <p className="mt-6 text-sm text-muted-foreground font-medium flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                  Limited launch offer. Free shipping on your first order.
-                </p>
+                </NavButtonStyle>
+                
+                <div className="mt-10 flex items-center gap-4 text-xs font-bold text-muted-foreground tracking-tight opacity-60">
+                     <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                     Limited launch offer. 100% Satisfaction Guarantee.
+                </div>
               </motion.div>
             </div>
           </div>
         </div>
       </div>
+
+      <style jsx global>{`
+        .shadow-4xl { box-shadow: 0 100px 200px -50px rgba(16, 185, 129, 0.1); }
+        @keyframes float-slow {
+            0%, 100% { transform: translateY(0) rotate(0); opacity: 0.2; }
+            50% { transform: translateY(-30px) rotate(15deg); opacity: 0.4; }
+        }
+        .animate-float-slow { animation: float-slow 6s ease-in-out infinite; }
+        ::selection {
+            background: rgba(16, 185, 129, 0.4);
+            color: white;
+        }
+      `}</style>
     </section>
   );
+}
+
+// --- Navigation-Style Button (Synchronized Animation) ---
+function NavButtonStyle({ children }: { children: React.ReactNode }) {
+    return (
+        <motion.button
+            initial="initial"
+            whileHover="hover"
+            whileTap="tap"
+            className="relative group overflow-hidden px-14 h-20 rounded-full font-black text-xl uppercase tracking-[0.3em] flex items-center justify-center transition-all duration-500 bg-emerald-600 text-white outline-hidden cursor-pointer shadow-2xl active:scale-95 z-30"
+        >
+            {/* Background Fill Animation */}
+            <motion.div
+                variants={{
+                    initial: { y: "100%" },
+                    hover: { y: "0%" }
+                }}
+                transition={{ duration: 0.5, ease: [0.19, 1, 0.22, 1] }}
+                className="absolute inset-0 z-0 bg-emerald-400 dark:bg-emerald-500"
+            />
+
+            {/* Shine Effect */}
+            <motion.div
+                variants={{
+                    initial: { x: "-100%", opacity: 0 },
+                    hover: { x: "100%", opacity: 0.3 }
+                }}
+                transition={{ duration: 1, ease: "easeInOut" }}
+                className="absolute inset-0 z-1 bg-linear-to-r from-transparent via-white to-transparent skew-x-12"
+            />
+
+            <span className="relative z-10 flex items-center justify-center transition-all duration-300 group-hover:scale-[1.05]">
+                {children}
+            </span>
+        </motion.button>
+    );
 }

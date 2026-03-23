@@ -42,8 +42,7 @@ export default function SevoraBrandPage() {
       <SafetyTrust />
       <SevoraFAQ />
       <FinalConversion />
-      <SevoraNewsletter />
-      <SevoraFooter />
+  
     </main>
   );
 }
