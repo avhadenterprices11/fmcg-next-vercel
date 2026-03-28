@@ -1,5 +1,6 @@
 "use client";
-import { useRef } from "react";
+
+import React, { useRef } from "react";
 import { motion } from "framer-motion";
 import { 
     Layout, 
@@ -12,8 +13,14 @@ import {
     Search,
     Video,
     Share2,
-    BarChart
+    BarChart,
+    ChevronRight
 } from "lucide-react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const SERVICES = [
     {
@@ -60,89 +67,236 @@ const SERVICES = [
     }
 ];
 
-export default function CoreServices() {
-    return (
-        <section id="services" className="relative py-24 bg-background">
-            {/* Background Pattern */}
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-20%,#10b9810a,transparent_50%)] pointer-events-none" />
+// --- Sub-components ---
 
-            <div className="container relative z-10 px-4">
-                <div className="flex flex-col items-center text-center space-y-4 mb-20">
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        className="px-4 py-1.5 rounded-full border border-border/10 bg-muted/30 text-xs font-bold uppercase tracking-widest"
+function GsapSplitText({ text, className, delay = 0 }: { text: string; className?: string; delay?: number }) {
+    const containerRef = useRef<HTMLSpanElement>(null);
+    const words = text.split(" ");
+
+    useGSAP(() => {
+        if (!containerRef.current) return;
+
+        const letters = containerRef.current.querySelectorAll(".split-char");
+        
+        gsap.set(letters, { 
+            y: 80, 
+            opacity: 0, 
+            rotateX: -90 
+        });
+
+        gsap.to(letters, {
+            y: 0,
+            opacity: 1,
+            rotateX: 0,
+            duration: 1.2,
+            stagger: 0.02,
+            ease: "power4.out",
+            delay: delay,
+            scrollTrigger: {
+                trigger: containerRef.current,
+                start: "top 90%",
+            }
+        });
+    }, { scope: containerRef });
+
+    return (
+        <span ref={containerRef} className={`inline-block perspective-1000 ${className}`}>
+            {words.map((word, i) => (
+                <span key={i} className="inline-block whitespace-nowrap mr-[0.3em] last:mr-0 py-1 overflow-hidden">
+                    {word.split("").map((char, j) => (
+                        <span key={j} className="split-char inline-block will-change-transform">
+                            {char}
+                        </span>
+                    ))}
+                </span>
+            ))}
+        </span>
+    );
+}
+
+function ServiceCard({ service, index }: { service: any; index: number }) {
+    const cardRef = useRef<HTMLDivElement>(null);
+    const iconRef = useRef<HTMLDivElement>(null);
+    const featuresRef = useRef<HTMLUListElement>(null);
+
+    useGSAP(() => {
+        if (!cardRef.current) return;
+
+        // Reveal card
+        gsap.fromTo(cardRef.current, 
+            { opacity: 0, y: 40, scale: 0.95 },
+            { 
+                opacity: 1, 
+                y: 0, 
+                scale: 1, 
+                duration: 1, 
+                ease: "power2.out",
+                delay: index * 0.1,
+                scrollTrigger: {
+                    trigger: cardRef.current,
+                    start: "top 95%",
+                }
+            }
+        );
+    }, { scope: cardRef });
+
+    const handleMouseEnter = () => {
+        if (iconRef.current) {
+            gsap.to(iconRef.current, { scale: 1.1, rotate: 5, duration: 0.4, ease: "back.out" });
+        }
+        if (featuresRef.current) {
+            const items = featuresRef.current.querySelectorAll("li");
+            gsap.to(items, { x: 4, stagger: 0.05, duration: 0.3, color: "var(--foreground)" });
+        }
+    };
+
+    const handleMouseLeave = () => {
+        if (iconRef.current) {
+            gsap.to(iconRef.current, { scale: 1, rotate: 0, duration: 0.4, ease: "power2.out" });
+        }
+        if (featuresRef.current) {
+            const items = featuresRef.current.querySelectorAll("li");
+            gsap.to(items, { x: 0, stagger: 0.05, duration: 0.3, color: "var(--muted-foreground)" });
+        }
+    };
+
+    const colorMap: { [key: string]: { bg: string, border: string, text: string, hoverBg: string } } = {
+        emerald: { 
+            bg: "bg-emerald-500/10 dark:bg-emerald-500/10", 
+            border: "border-emerald-500/20 dark:border-emerald-500/30", 
+            text: "text-emerald-600 dark:text-emerald-500",
+            hoverBg: "group-hover:bg-emerald-500"
+        },
+        blue: { 
+            bg: "bg-blue-500/10 dark:bg-blue-500/10", 
+            border: "border-blue-500/20 dark:border-blue-500/30", 
+            text: "text-blue-600 dark:text-blue-500",
+            hoverBg: "group-hover:bg-blue-500"
+        },
+        purple: { 
+            bg: "bg-purple-500/10 dark:bg-purple-500/10", 
+            border: "border-purple-500/20 dark:border-purple-500/30", 
+            text: "text-purple-600 dark:text-purple-500",
+            hoverBg: "group-hover:bg-purple-500"
+        },
+        amber: { 
+            bg: "bg-amber-500/10 dark:bg-amber-500/10", 
+            border: "border-amber-500/20 dark:border-amber-500/30", 
+            text: "text-amber-600 dark:text-amber-500",
+            hoverBg: "group-hover:bg-amber-500"
+        },
+        pink: { 
+            bg: "bg-pink-500/10 dark:bg-pink-500/10", 
+            border: "border-pink-500/20 dark:border-pink-500/30", 
+            text: "text-pink-600 dark:text-pink-500",
+            hoverBg: "group-hover:bg-pink-500"
+        },
+        cyan: { 
+            bg: "bg-cyan-500/10 dark:bg-cyan-500/10", 
+            border: "border-cyan-500/20 dark:border-cyan-500/30", 
+            text: "text-cyan-600 dark:text-cyan-500",
+            hoverBg: "group-hover:bg-cyan-500"
+        }
+    };
+
+    const colors = colorMap[service.color] || colorMap.emerald;
+
+    return (
+        <div
+            ref={cardRef}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            className="group relative flex flex-col p-10 lg:p-12 bg-zinc-50/50 dark:bg-zinc-900/20 border border-zinc-200/50 dark:border-white/10 transition-all duration-500 hover:bg-white dark:hover:bg-zinc-900/40 backdrop-blur-md"
+        >
+            <div className="relative z-10 flex flex-col h-full">
+                <div className="flex items-start justify-between mb-10">
+                    <div 
+                        ref={iconRef}
+                        className={`w-16 h-16 rounded-2xl ${colors.bg} ${colors.border} ${colors.text} flex items-center justify-center shadow-2xl transition-all duration-500 ${colors.hoverBg} group-hover:text-white`}
                     >
-                        Core Capabilities
+                        <service.icon className="w-8 h-8" />
+                    </div>
+                    <div className="p-3 rounded-full bg-zinc-100 dark:bg-white/5 border border-zinc-200 dark:border-white/5 group-hover:border-emerald-500/30 group-hover:text-emerald-500 transition-all duration-500">
+                        <ArrowUpRight className="w-5 h-5" />
+                    </div>
+                </div>
+
+                <div className="space-y-4 mb-8">
+                    <h3 className="text-xl md:text-3xl font-bold tracking-tight text-foreground group-hover:text-emerald-500 transition-colors duration-300">
+                        {service.title}
+                    </h3>
+                    <p className="text-lg text-muted-foreground/80 font-light leading-snug">
+                        {service.subtitle}
+                    </p>
+                </div>
+
+                <ul ref={featuresRef} className="space-y-4 pt-10 mt-auto border-t border-zinc-200/50 dark:border-white/5">
+                    {service.features.map((feature: string, fIdx: number) => (
+                        <li key={fIdx} className="flex items-center gap-3 text-sm text-muted-foreground transition-colors duration-300">
+                            <ChevronRight className="w-3 h-3 text-emerald-500 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+                            <span className="group-hover:translate-x-1 transition-transform">{feature}</span>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+
+            {/* Bottom Accent Line */}
+            <div className="absolute bottom-0 left-0 w-full h-[2px] bg-emerald-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left" />
+        </div>
+    );
+}
+
+export default function CoreServices() {
+    const containerRef = useRef<HTMLDivElement>(null);
+
+    return (
+        <section 
+            id="services" 
+            ref={containerRef}
+            className="relative min-h-screen flex flex-col items-center justify-center py-32 overflow-hidden selection:bg-emerald-500/30"
+        >
+            {/* Background Atmosphere */}
+            <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
+                <div className="absolute top-[20%] left-[-10%] w-[50vw] h-[50vw] bg-emerald-500/5 rounded-full blur-[150px] animate-pulse" />
+                <div className="absolute bottom-[-20%] right-[-10%] w-[60vw] h-[60vw] bg-emerald-900/5 rounded-full blur-[150px] animate-pulse [animation-delay:3s]" />
+                
+                {/* Grid Overlay */}
+                <div className="absolute inset-0 bg-size-[64px_64px] bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] mask-[radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)]" />
+            </div>
+
+            <div className="container mx-auto relative z-10 px-6">
+                <div className="flex flex-col items-center text-center mb-24">
+                    {/* Badge Style like About Page */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="flex items-center gap-4 mb-8 md:mb-12"
+                    >
+                        <div className="h-px w-12 bg-emerald-500" />
+                        <span className="text-emerald-600 font-mono text-sm tracking-widest uppercase font-semibold">
+                            Our Expertise
+                        </span>
                     </motion.div>
                     
-                    <motion.h2
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.2 }}
-                        className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tighter"
-                    >
-                        Precision-Built <br />
-                        <span className="text-emerald-500">Service Ecosystem</span>
-                    </motion.h2>
+                    <h2 className="max-w-[1200px] text-4xl md:text-6xl lg:text-8xl font-bold text-foreground leading-[0.9] tracking-tighter mb-8">
+                        <GsapSplitText text="Precision-Built Service Ecosystem" />
+                    </h2>
 
-                    <motion.p
+                    <motion.p 
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        transition={{ delay: 0.3 }}
-                        className="text-lg text-muted-foreground max-w-2xl"
+                        transition={{ delay: 0.4 }}
+                        className="text-lg md:text-xl lg:text-2xl text-muted-foreground/80 font-medium max-w-3xl mx-auto leading-relaxed"
                     >
-                        A complete suite of digital solutions designed to work in synergy, 
-                        transforming your brand into a scalable market leader.
+                        A specialized suite of digital tools designed to drive your brand’s expansion across the international landscape.
                     </motion.p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border border-border/10 rounded-3xl overflow-hidden bg-background/50 backdrop-blur-sm">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border border-zinc-200/50 dark:border-white/5 rounded-[3rem] overflow-hidden bg-zinc-50/50 dark:bg-white/5 backdrop-blur-2xl shadow-4xl text-left">
                     {SERVICES.map((service, idx) => (
-                        <motion.div
-                            key={idx}
-                            initial={{ opacity: 0 }}
-                            whileInView={{ opacity: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.1 * idx }}
-                            className="group relative p-10 lg:p-12 border border-border/10 hover:bg-muted/30 transition-all duration-500 overflow-hidden"
-                        >
-                            {/* Decorative Background Accent */}
-                            <div className={`absolute -right-8 -top-8 w-32 h-32 bg-${service.color}-500/5 rounded-full blur-3xl group-hover:bg-${service.color}-500/10 transition-colors duration-500`} />
-                            
-                            <div className="relative z-10 space-y-8">
-                                <div className="flex items-start justify-between">
-                                    <div className={`w-14 h-14 rounded-2xl bg-${service.color}-500/10 border border-${service.color}-500/20 flex items-center justify-center text-${service.color}-500 group-hover:scale-110 transition-transform duration-500`}>
-                                        <service.icon className="w-7 h-7" />
-                                    </div>
-                                    <ArrowUpRight className="w-6 h-6 text-muted-foreground/30 group-hover:text-emerald-500 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
-                                </div>
-
-                                <div className="space-y-3">
-                                    <h3 className="text-2xl font-bold text-foreground group-hover:text-emerald-500 transition-colors">
-                                        {service.title}
-                                    </h3>
-                                    <p className="text-sm text-muted-foreground leading-relaxed h-10">
-                                        {service.subtitle}
-                                    </p>
-                                </div>
-
-                                <ul className="space-y-4 pt-6 mt-6 border-t border-border/10">
-                                    {service.features.map((feature, fIdx) => (
-                                        <li key={fIdx} className="flex items-center gap-3 text-sm text-muted-foreground group-hover:text-foreground transition-colors">
-                                            <div className="w-1.5 h-1.5 rounded-full bg-emerald-500/50" />
-                                            {feature}
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-
-                            {/* Hover Reveal Line */}
-                            <div className="absolute bottom-0 left-0 w-full h-1 bg-emerald-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left" />
-                        </motion.div>
+                        <ServiceCard key={idx} service={service} index={idx} />
                     ))}
                 </div>
 
@@ -150,13 +304,24 @@ export default function CoreServices() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="mt-16 text-center"
+                    transition={{ delay: 1 }}
+                    className="mt-20 text-center"
                 >
-                    <p className="text-muted-foreground">
-                        Looking for a custom solution? <Link href="#enquiry" className="text-emerald-500 hover:underline font-bold">Contact our strategy team</Link>
+                    <p className="text-xl text-muted-foreground font-light">
+                        Looking for a custom solution?{" "}
+                        <Link href="#enquiry" className="text-emerald-500 hover:text-emerald-400 font-bold transition-colors group inline-flex items-center gap-2">
+                            Contact our strategy team
+                            <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                        </Link>
                     </p>
                 </motion.div>
             </div>
+
+            <style jsx global>{`
+                .perspective-1000 {
+                    perspective: 1000px;
+                }
+            `}</style>
         </section>
     );
 }

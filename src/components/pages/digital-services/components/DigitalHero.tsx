@@ -42,16 +42,15 @@ export default function DigitalHero() {
     };
 
     return (
-        <section ref={containerRef} className="relative min-h-[100dvh] w-full bg-background overflow-hidden flex flex-col justify-center px-4 md:px-12 pt-20">
+        <section ref={containerRef} className="relative min-h-dvh w-full bg-background overflow-hidden flex flex-col justify-center px-4 md:px-12 pt-20">
             <GrainOverlay />
             
             {/* Background Ambience */}
             <div className="absolute inset-0 pointer-events-none">
-                <div className="absolute top-[-20%] right-[-10%] w-[120vw] h-[120vw] md:w-[60vw] md:h-[60vw] bg-emerald-500/10 rounded-full blur-[80px] md:blur-[120px] animate-pulse [animation-duration:10s]" />
-                <div className="absolute bottom-[-20%] left-[-10%] w-[100vw] h-[100vw] md:w-[50vw] md:h-[50vw] bg-blue-600/10 rounded-full blur-[60px] md:blur-[100px] animate-pulse [animation-duration:8s]" />
-                
+                <div className="absolute top-[-20%] right-[-10%] w-[120vw] h-[120vw] md:w-[60vw] md:h-[60vw] bg-emerald-500/10 rounded-full blur-[80px] md:blur-[120px] animate-pulse animation-duration-[10s]" />
+
                 {/* Refined Grid Pattern */}
-                <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:60px_60px] [mask-image:radial-gradient(ellipse_80%_60%_at_50%_0%,#000_70%,transparent_100%)]" />
+                <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-size-[60px_60px] mask-[radial-gradient(ellipse_80%_60%_at_50%_0%,#000_70%,transparent_100%)]" />
             </div>
 
             <motion.div
@@ -63,11 +62,11 @@ export default function DigitalHero() {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
-                    className="flex items-center gap-3 md:gap-4 mb-8 md:mb-12"
+                    className="flex items-center gap-4 mb-8 md:mb-12"
                 >
-                    <div className="h-px w-8 md:w-12 bg-emerald-500" />
-                    <span className="text-emerald-500 font-mono text-xs md:text-sm tracking-widest uppercase font-semibold">
-                        Digital Infrastructure & Growth
+                    <div className="h-px w-12 bg-emerald-500" />
+                    <span className="text-emerald-600 font-mono text-sm tracking-widest uppercase font-semibold">
+                        Digital Services
                     </span>
                 </motion.div>
 
@@ -88,7 +87,7 @@ export default function DigitalHero() {
                                 }}
                                 className="text-[13vw] md:text-9xl font-bold text-foreground leading-[0.9] tracking-tighter"
                             >
-                                <span className={item.highlight ? "text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-emerald-700 filter drop-shadow-[0_0_20px_rgba(16,185,129,0.2)]" : ""}>
+                                <span className={item.highlight ? "text-transparent bg-clip-text bg-linear-to-r from-emerald-600 to-teal-500 pr-1 " : ""}>
                                     {item.text}
                                 </span>
                             </motion.h1>
@@ -103,9 +102,9 @@ export default function DigitalHero() {
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.8, delay: 1 }}
-                            className="text-muted-foreground text-lg md:text-2xl leading-relaxed"
+                            className="text-muted-foreground text-lg md:text-xl max-w-xl leading-relaxed mt-12 md:mt-24 border-t border-border pt-8"
                         >
-                            We build end-to-end digital frameworks that bridge the gap between market supply and global demand through data-driven execution.
+                            We build integrated digital ecosystems that handle multi-region complexity, ensuring your brand grows consistently across every frontier.
                         </motion.p>
                         
                         <motion.div

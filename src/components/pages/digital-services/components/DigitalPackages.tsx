@@ -78,7 +78,7 @@ function VisualSlide({ pkg, index, activeCard }: { pkg: any, index: number, acti
                 priority={index === 0}
             />
             <div ref={overlayRef} className="absolute inset-0 bg-black/60 opacity-0 pointer-events-none" />
-            <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/20 pointer-events-none" />
+            <div className="absolute inset-0 bg-linear-to-t from-background via-transparent to-background/20 pointer-events-none" />
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full flex items-center justify-center pointer-events-none mix-blend-overlay opacity-20">
                 <span className="text-[20vw] font-bold tracking-tighter text-foreground blur-sm select-none">0{index + 1}</span>
             </div>
@@ -103,7 +103,7 @@ function ContentBlock({ pkg, index, setActiveCard }: { pkg: any, index: number, 
                     <span className="text-emerald-500 text-xs font-bold uppercase tracking-widest">{pkg.title}</span>
                 </div>
 
-                <h2 className="text-4xl lg:text-5xl font-bold tracking-tight leading-none text-foreground">{pkg.tagline}</h2>
+                <h2 className="text-xl md:text-3xl font-bold tracking-tight leading-none text-foreground">{pkg.tagline}</h2>
                 <p className="text-lg text-muted-foreground leading-relaxed">{pkg.description}</p>
                 
                 <div className="grid grid-cols-1 gap-4 py-8 border-y border-border/10">

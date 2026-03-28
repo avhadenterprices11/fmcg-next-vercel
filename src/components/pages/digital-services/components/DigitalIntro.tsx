@@ -1,21 +1,24 @@
 "use client";
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+
+import React, { useRef } from "react";
+import { motion } from "framer-motion";
 import { 
-    CheckCircle2, 
-    TrendingUp, 
-    Users, 
-    Target, 
-    Rocket, 
-    ShieldCheck, 
     Search, 
+    TrendingUp, 
     Globe, 
-    ArrowRight,
+    Target, 
+    ShieldCheck, 
     Zap,
-    MoveRight,
+    ArrowUpRight,
     Eye,
-    Activity
+    Activity,
+    ChevronRight
 } from "lucide-react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const REASONS = [
     {
@@ -23,241 +26,311 @@ const REASONS = [
         description: "Be where your customers are searching, ensuring your brand is the first point of contact in new markets.",
         icon: Search,
         stat: "85%+",
-        statLabel: "Intent Traffic"
+        statLabel: "Intent Traffic",
+        color: "emerald"
     },
     {
         title: "Authority Scaling",
         description: "A strong digital presence establishes authority and credibility before the first conversation even happens.",
         icon: ShieldCheck,
         stat: "Instant",
-        statLabel: "Trust Factor"
+        statLabel: "Trust Factor",
+        color: "blue"
     },
     {
         title: "Multichannel ROI",
         description: "Optimize every touchpoint in the customer journey to drive measurable growth and higher ROI.",
         icon: TrendingUp,
         stat: "3.4x",
-        statLabel: "Avg. Conversion"
+        statLabel: "Avg. Conversion",
+        color: "purple"
     },
     {
         title: "Global Reach",
         description: "Expand into the UK, EU, or Middle East with a digital framework that adapts to local demand automatically.",
         icon: Globe,
         stat: "Global",
-        statLabel: "Deployment"
+        statLabel: "Deployment",
+        color: "cyan"
     },
     {
         title: "Strategic Agility",
         description: "Compete effectively against established giants by leveraging strategic digital positioning and agility.",
         icon: Target,
         stat: "Top 1%",
-        statLabel: "Positioning"
+        statLabel: "Positioning",
+        color: "emerald"
     }
 ];
 
-function GrainOverlay() {
+// --- Sub-components ---
+
+function GsapSplitText({ text, className, delay = 0 }: { text: string; className?: string; delay?: number }) {
+    const containerRef = useRef<HTMLSpanElement>(null);
+    const words = text.split(" ");
+
+    useGSAP(() => {
+        if (!containerRef.current) return;
+
+        const letters = containerRef.current.querySelectorAll(".split-char");
+        
+        gsap.set(letters, { 
+            y: 80, 
+            opacity: 0, 
+            rotateX: -90 
+        });
+
+        gsap.to(letters, {
+            y: 0,
+            opacity: 1,
+            rotateX: 0,
+            duration: 1.2,
+            stagger: 0.02,
+            ease: "power4.out",
+            delay: delay,
+            scrollTrigger: {
+                trigger: containerRef.current,
+                start: "top 90%",
+            }
+        });
+    }, { scope: containerRef });
+
     return (
-        <div className="absolute inset-0 pointer-events-none z-0 opacity-[0.03] mix-blend-overlay">
-            <svg className="w-full h-full">
-                <filter id="noiseFilterIntro">
-                    <feTurbulence type="fractalNoise" baseFrequency="0.60" numOctaves="3" stitchTiles="stitch" />
-                </filter>
-                <rect width="100%" height="100%" filter="url(#noiseFilterIntro)" />
-            </svg>
+        <span ref={containerRef} className={`inline-block perspective-1000 ${className}`}>
+            {words.map((word, i) => (
+                <span key={i} className="inline-block whitespace-nowrap mr-[0.3em] last:mr-0 py-1 overflow-hidden">
+                    {word.split("").map((char, j) => (
+                        <span key={j} className="split-char inline-block will-change-transform">
+                            {char}
+                        </span>
+                    ))}
+                </span>
+            ))}
+        </span>
+    );
+}
+
+function RationaleCard({ reason, index }: { reason: any; index: number }) {
+    const cardRef = useRef<HTMLDivElement>(null);
+    const iconRef = useRef<HTMLDivElement>(null);
+
+    useGSAP(() => {
+        if (!cardRef.current) return;
+
+        gsap.fromTo(cardRef.current, 
+            { opacity: 0, y: 40, scale: 0.95 },
+            { 
+                opacity: 1, 
+                y: 0, 
+                scale: 1, 
+                duration: 1, 
+                ease: "power2.out",
+                delay: index * 0.1,
+                scrollTrigger: {
+                    trigger: cardRef.current,
+                    start: "top 95%",
+                }
+            }
+        );
+    }, { scope: cardRef });
+
+    const handleMouseEnter = () => {
+        if (iconRef.current) {
+            gsap.to(iconRef.current, { scale: 1.1, rotate: 5, duration: 0.4, ease: "back.out" });
+        }
+    };
+
+    const handleMouseLeave = () => {
+        if (iconRef.current) {
+            gsap.to(iconRef.current, { scale: 1, rotate: 0, duration: 0.4, ease: "power2.out" });
+        }
+    };
+
+    const colorMap: { [key: string]: { bg: string, border: string, text: string, hoverBg: string } } = {
+        emerald: { 
+            bg: "bg-emerald-500/10 dark:bg-emerald-500/10", 
+            border: "border-emerald-500/20 dark:border-emerald-500/30", 
+            text: "text-emerald-600 dark:text-emerald-500",
+            hoverBg: "group-hover:bg-emerald-500"
+        },
+        blue: { 
+            bg: "bg-blue-500/10 dark:bg-blue-500/10", 
+            border: "border-blue-500/20 dark:border-blue-500/30", 
+            text: "text-blue-600 dark:text-blue-500",
+            hoverBg: "group-hover:bg-blue-500"
+        },
+        purple: { 
+            bg: "bg-purple-500/10 dark:bg-purple-500/10", 
+            border: "border-purple-500/20 dark:border-purple-500/30", 
+            text: "text-purple-600 dark:text-purple-500",
+            hoverBg: "group-hover:bg-purple-500"
+        },
+        cyan: { 
+            bg: "bg-cyan-500/10 dark:bg-cyan-500/10", 
+            border: "border-cyan-500/20 dark:border-cyan-500/30", 
+            text: "text-cyan-600 dark:text-cyan-500",
+            hoverBg: "group-hover:bg-cyan-500"
+        }
+    };
+
+    const colors = colorMap[reason.color] || colorMap.emerald;
+
+    return (
+        <div
+            ref={cardRef}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            className="group relative flex flex-col p-10 lg:p-12 bg-zinc-50/50 dark:bg-zinc-900/20 border border-zinc-200/50 dark:border-white/10 transition-all duration-500 hover:bg-white dark:hover:bg-zinc-900/40 backdrop-blur-md"
+        >
+            <div className="relative z-10 flex flex-col h-full">
+                <div className="flex items-start justify-between mb-10">
+                    <div 
+                        ref={iconRef}
+                        className={`w-16 h-16 rounded-2xl ${colors.bg} ${colors.border} ${colors.text} flex items-center justify-center shadow-2xl transition-all duration-500 ${colors.hoverBg} group-hover:text-white`}
+                    >
+                        <reason.icon className="w-8 h-8" />
+                    </div>
+                    <div className="text-right flex flex-col items-end">
+                        <span className="text-lg font-mono font-black text-emerald-600 dark:text-emerald-500 leading-none">{reason.stat}</span>
+                        <span className="text-[10px] uppercase tracking-tighter text-muted-foreground leading-none mt-1 font-bold">{reason.statLabel}</span>
+                    </div>
+                </div>
+
+                <div className="space-y-4 mb-8">
+                    <h3 className="text-xl md:text-3xl font-bold tracking-tight text-foreground group-hover:text-emerald-500 transition-colors duration-300">
+                        {reason.title}
+                    </h3>
+                    <p className="text-lg text-muted-foreground/80 font-light leading-relaxed">
+                        {reason.description}
+                    </p>
+                </div>
+
+                <div className="mt-auto pt-8 flex items-center justify-between border-t border-zinc-200/50 dark:border-white/5">
+                    <div className="flex gap-2">
+                        <div className="w-1.5 h-1.5 rounded-full bg-emerald-500/50" />
+                        <div className="w-1.5 h-1.5 rounded-full bg-emerald-500/20" />
+                    </div>
+                    <ArrowUpRight className="w-5 h-5 text-zinc-400 dark:text-muted-foreground/30 group-hover:text-emerald-500 transition-colors" />
+                </div>
+            </div>
+
+            {/* Bottom Accent Line */}
+            <div className="absolute bottom-0 left-0 w-full h-[2px] bg-emerald-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left" />
         </div>
     );
 }
 
 export default function DigitalIntro() {
     const containerRef = useRef<HTMLDivElement>(null);
-    const isInView = useInView(containerRef, { once: true, margin: "-100px" });
 
     return (
-        <section id="digital-intro" ref={containerRef} className="relative py-24 md:py-32 bg-background overflow-hidden border-t border-border/40">
-            <GrainOverlay />
-            
-            {/* Background Accent Elements */}
-            <div className="absolute inset-0 pointer-events-none overflow-hidden">
-                {/* Refined Grid Pattern */}
-                <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-size-[40px_40px]" />
+        <section 
+            id="digital-intro" 
+            ref={containerRef} 
+            className="relative min-h-screen flex flex-col items-center justify-center py-32 bg-background overflow-hidden border-t border-white/5 selection:bg-emerald-500/30"
+        >
+            {/* Background Atmosphere */}
+            <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
+                <div className="absolute top-[-10%] right-[-10%] w-[60vw] h-[60vw] bg-emerald-500/5 rounded-full blur-[150px] animate-pulse" />
+                <div className="absolute bottom-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-emerald-900/5 rounded-full blur-[150px] animate-pulse [animation-delay:2s]" />
                 
-                {/* Glow Orbs */}
-                <div className="absolute top-[20%] left-[-10%] w-[500px] h-[500px] bg-emerald-500/5 rounded-full blur-[120px]" />
-                <div className="absolute bottom-[10%] right-[-5%] w-[400px] h-[400px] bg-emerald-600/5 rounded-full blur-[100px]" />
+                {/* Grid Overlay */}
+                <div className="absolute inset-0 bg-size-[64px_64px] bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] mask-[radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)]" />
             </div>
 
-            <div className="container relative z-10 px-4 max-w-7xl mx-auto">
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-start">
+            <div className="container mx-auto relative z-10 px-6">
+                <div className="flex flex-col items-center text-center">
+                    {/* Badge Style like About Page */}
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        className="flex items-center gap-4 mb-8 md:mb-12"
+                    >
+                        <div className="h-px w-12 bg-emerald-500" />
+                        <span className="text-emerald-600 font-mono text-sm tracking-widest uppercase font-semibold">
+                            Digital Foundation
+                        </span>
+                        <div className="h-px w-12 bg-emerald-500" />
+                    </motion.div>
+
+                    <h2 className="max-w-[1200px] text-4xl md:text-6xl lg:text-8xl font-bold text-foreground leading-[0.9] tracking-tighter mb-12">
+                        <GsapSplitText text="Distribution alone is" className="block" />
+                        <span className="text-muted-foreground/30 italic block mt-4">no longer enough.</span>
+                    </h2>
+
+                    <motion.p
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.6 }}
+                        className="text-xl md:text-2xl lg:text-3xl text-muted-foreground font-medium max-w-4xl mx-auto leading-relaxed"
+                    >
+                        In a world of fragmented markets, we don't just provide services — we build the digital infrastructure that connects your supply to global consumer demand.
+                    </motion.p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border border-zinc-200/50 dark:border-white/5 rounded-[3rem] overflow-hidden bg-zinc-50/50 dark:bg-white/5 backdrop-blur-2xl shadow-4xl mb-20">
+                    {REASONS.map((reason, idx) => (
+                        <RationaleCard key={idx} reason={reason} index={idx} />
+                    ))}
                     
-                    {/* Left Side: Content & Impact */}
-                    <div className="lg:col-span-5 space-y-12">
-                        <div className="space-y-6">
-                            <motion.div
-                                initial={{ opacity: 0, x: -20 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true }}
-                                className="flex items-center gap-4 text-emerald-500 font-mono text-xs uppercase tracking-[0.3em] font-bold"
-                            >
-                                <div className="w-12 h-px bg-emerald-500" />
-                                <span className="drop-shadow-[0_0_8px_rgba(16,185,129,0.3)]">Digital Foundation</span>
-                            </motion.div>
-
-                            <motion.h2
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.8, ease: "easeOut" }}
-                                className="text-4xl md:text-6xl font-bold leading-[1.1] tracking-tighter"
-                            >
-                                Distribution alone is <span className="text-muted-foreground/30 italic">no longer enough.</span>
-                            </motion.h2>
-
-                            <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: 0.2, duration: 0.8 }}
-                                className="space-y-6 text-lg text-muted-foreground/80 leading-relaxed max-w-xl"
-                            >
-                                <p>
-                                    In the modern trade landscape, brands that scale are not just available — they are <span className="text-foreground font-semibold">commanding, trusted, and omnipresent</span> across digital touchpoints.
-                                </p>
-                                <p>
-                                    We don't just "advertise"—we build digital infrastructure that bridges the gap between your supply and world-class demand.
-                                </p>
-                            </motion.div>
+                    {/* Final CTA Card Concept */}
+                    <motion.div 
+                        initial={{ opacity: 0, y: 40 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.6 }}
+                        className="group relative flex flex-col p-10 lg:p-12 bg-emerald-600/10 border border-emerald-500/20 backdrop-blur-md justify-center items-center text-center space-y-6"
+                    >
+                        <div className="w-20 h-20 rounded-full bg-emerald-500 flex items-center justify-center text-white shadow-[0_0_30px_rgba(16,185,129,0.4)] group-hover:scale-110 transition-transform duration-500">
+                            <Zap className="w-10 h-10 fill-white" />
                         </div>
-
-                        {/* Performance Indicators */}
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 lg:gap-12">
-                            {[
-                                { 
-                                    label: "Digital Visibility", 
-                                    desc: "Drives Market Perception",
-                                    icon: Eye,
-                                    value: "Active"
-                                },
-                                { 
-                                    label: "Strategic Execution", 
-                                    desc: "Drives Sustainable Growth",
-                                    icon: Activity,
-                                    value: "Optimized"
-                                }
-                            ].map((item, i) => (
-                                <motion.div
-                                    key={i}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: 0.4 + (i * 0.1) }}
-                                    className="group relative p-6 rounded-2xl bg-muted/20 border border-border/50 hover:bg-muted/30 transition-all duration-300"
-                                >
-                                    <div className="absolute top-4 right-4 text-emerald-500/20 group-hover:text-emerald-500/40 transition-colors">
-                                        <item.icon className="w-8 h-8" />
-                                    </div>
-                                    <div className="space-y-2">
-                                        <div className="flex items-center gap-2">
-                                            <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                                            <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-emerald-500 font-bold">{item.value}</span>
-                                        </div>
-                                        <h3 className="text-xl font-bold tracking-tight text-foreground">{item.label}</h3>
-                                        <p className="text-xs text-muted-foreground leading-snug">{item.desc}</p>
-                                    </div>
-                                </motion.div>
-                            ))}
-                        </div>
-
-                        {/* Quote Block */}
-                        <motion.div
-                            initial={{ opacity: 0, x: -20 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.6 }}
-                            className="relative pl-8 py-2 border-l border-emerald-500/30"
-                        >
-                            <p className="text-sm md:text-base italic text-muted-foreground font-serif">
-                                "Market dominance is no longer about who has the warehouse; it's about who owns the digital mindshare."
-                            </p>
-                        </motion.div>
-                    </div>
-
-                    {/* Right Side: The "Why" Grid */}
-                    <div className="lg:col-span-7 relative">
-                        {/* Decorative Background for Grid */}
-                        <div className="absolute -inset-4 bg-emerald-500/5 blur-2xl rounded-[32px] opacity-50" />
+                        <h3 className="text-2xl font-bold text-white tracking-tight">Ready to Modernize?</h3>
+                        <p className="text-emerald-100/60 font-medium">Build a digital framework <br className="hidden md:block" /> designed for scale.</p>
+                        <a href="#enquiry" className="inline-flex items-center gap-2 text-emerald-500 font-bold uppercase tracking-widest text-xs group/link">
+                            Strategy Reveal
+                            <ChevronRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
+                        </a>
                         
-                        <div className="relative bg-card/40 backdrop-blur-xl border border-border/40 rounded-[32px] p-6 md:p-10 shadow-2xl overflow-hidden group">
-                            {/* Inner Corner Accents */}
-                            <div className="absolute top-0 right-0 w-24 h-24 bg-emerald-500/10 rounded-bl-[60px] blur-2xl" />
-                            
-                            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12">
-                                <div className="space-y-2">
-                                    <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground">Strategic Rationale</h3>
-                                    <p className="text-sm text-muted-foreground">Why digital presence is your strongest trade asset.</p>
-                                </div>
-                                <div className="hidden md:flex flex-col items-end">
-                                    <span className="text-3xl font-black text-emerald-500/10 group-hover:text-emerald-500/20 transition-colors duration-700">INFRASTRUCTURE</span>
-                                </div>
-                            </div>
+                        {/* Bottom Accent Line */}
+                        <div className="absolute bottom-0 left-0 w-full h-[2px] bg-emerald-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left" />
+                    </motion.div>
+                </div>
 
-                            <div className="grid gap-4">
-                                {REASONS.map((reason, idx) => (
-                                    <motion.div
-                                        key={idx}
-                                        initial={{ opacity: 0, y: 20 }}
-                                        whileInView={{ opacity: 1, y: 0 }}
-                                        viewport={{ once: true }}
-                                        transition={{ delay: 0.1 * idx }}
-                                        className="group/card relative flex items-start gap-4 p-5 rounded-2xl bg-background/40 border border-border/10 hover:border-emerald-500/30 hover:bg-muted/30 transition-all duration-500"
-                                    >
-                                        <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-background border border-border/20 flex items-center justify-center text-emerald-500 shadow-sm group-hover/card:scale-110 group-hover/card:bg-emerald-500 group-hover/card:text-white transition-all duration-500">
-                                            <reason.icon className="w-6 h-6" />
-                                        </div>
-                                        
-                                        <div className="grow space-y-1">
-                                            <div className="flex items-center justify-between gap-4">
-                                                <h4 className="font-bold text-foreground group-hover/card:text-white transition-colors">
-                                                    {reason.title}
-                                                </h4>
-                                                <div className="text-right flex flex-col items-end">
-                                                    <span className="text-xs font-mono font-bold text-emerald-500 leading-none">{reason.stat}</span>
-                                                    <span className="text-[8px] uppercase tracking-tighter text-muted-foreground leading-none mt-1">{reason.statLabel}</span>
-                                                </div>
-                                            </div>
-                                            <p className="text-[13px] text-muted-foreground group-hover/card:text-muted-foreground/80 leading-relaxed max-w-md">
-                                                {reason.description}
-                                            </p>
-                                        </div>
-
-                                        {/* Hover Indicator */}
-                                        <div className="absolute right-4 bottom-4 opacity-0 group-hover/card:opacity-100 translate-x-4 group-hover/card:translate-x-0 transition-all duration-500">
-                                            <MoveRight className="w-4 h-4 text-emerald-500" />
-                                        </div>
-                                    </motion.div>
-                                ))}
+                {/* Performance Mini Bar (Optional secondary UI) */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    {[
+                        { label: "Search Visibility", value: "85%", icon: Search },
+                        { label: "Brand Authority", value: "Instant", icon: ShieldCheck },
+                        { label: "Avg. Conversion", value: "3.4x", icon: TrendingUp },
+                        { label: "Market Reach", value: "Global", icon: Globe }
+                    ].map((item, i) => (
+                        <motion.div
+                            key={i}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.8 + (i * 0.1) }}
+                            className="flex items-center gap-4 p-6 rounded-2xl bg-zinc-50/50 dark:bg-white/5 border border-zinc-200/50 dark:border-white/10"
+                        >
+                            <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-500 shrink-0">
+                                <item.icon className="w-5 h-5" />
                             </div>
-                            
-                            <motion.div
-                                initial={{ opacity: 0 }}
-                                whileInView={{ opacity: 1 }}
-                                transition={{ delay: 0.8 }}
-                                className="mt-10 pt-8 border-t border-border/10 flex items-center justify-between"
-                            >
-                                <div className="flex gap-4">
-                                    <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                                    <div className="w-2 h-2 rounded-full bg-emerald-500/40" />
-                                    <div className="w-2 h-2 rounded-full bg-emerald-500/20" />
-                                </div>
-                                <button className="text-xs font-mono font-bold uppercase tracking-widest text-emerald-500 flex items-center gap-2 group/btn">
-                                    Growth Matrix
-                                    <Zap className="w-3 h-3 group-hover/btn:fill-emerald-500 transition-all" />
-                                </button>
-                            </motion.div>
-                        </div>
-                    </div>
+                            <div className="space-y-1">
+                                <p className="text-[10px] font-black uppercase tracking-widest text-muted-foreground leading-none">{item.label}</p>
+                                <p className="text-xl font-bold text-foreground leading-none">{item.value}</p>
+                            </div>
+                        </motion.div>
+                    ))}
                 </div>
             </div>
 
+            <style jsx global>{`
+                .perspective-1000 {
+                    perspective: 1000px;
+                }
+            `}</style>
         </section>
     );
 }
