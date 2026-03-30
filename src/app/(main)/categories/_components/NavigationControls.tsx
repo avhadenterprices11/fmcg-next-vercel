@@ -1,19 +1,20 @@
 import { Home, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
+import Link from 'next/link';
+
 export interface BreadcrumbItem {
     label: string;
-    onClick?: () => void;
+    href?: string;
     isActive?: boolean;
 }
 
 interface NavigationControlsProps {
     breadcrumbs: BreadcrumbItem[];
-    onHome: () => void;
     className?: string;
 }
 
-export const NavigationControls = ({ breadcrumbs, onHome, className = "fixed top-6 left-6 md:top-8 md:left-8" }: NavigationControlsProps) => {
+export const NavigationControls = ({ breadcrumbs, className = "fixed top-6 left-6 md:top-8 md:left-8" }: NavigationControlsProps) => {
     // Using semantic tokens for theme adaptability
     const textColor = 'text-foreground';
     const borderColor = 'border-border';
@@ -23,14 +24,15 @@ export const NavigationControls = ({ breadcrumbs, onHome, className = "fixed top
     return (
         <div className={`${className} z-50 flex items-center gap-2 pointer-events-none`}>
             {/* Home Button - Enable pointer events */}
-            <motion.button
-                onClick={onHome}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className={`p-2.5 rounded-full border ${borderColor} ${textColor} ${hoverBg} backdrop-blur-md transition-colors pointer-events-auto shadow-sm`}
-            >
-                <Home size={18} />
-            </motion.button>
+            <Link href="/categories" passHref legacyBehavior>
+                <motion.a
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className={`p-2.5 rounded-full border ${borderColor} ${textColor} ${hoverBg} backdrop-blur-md transition-colors pointer-events-auto shadow-sm flex items-center justify-center`}
+                >
+                    <Home size={18} />
+                </motion.a>
+            </Link>
 
             {/* Breadcrumbs */}
             <AnimatePresence mode="popLayout">
@@ -45,14 +47,22 @@ export const NavigationControls = ({ breadcrumbs, onHome, className = "fixed top
                     >
                         <ChevronRight size={14} className={separatorColor} />
 
-                        <motion.button
-                            onClick={item.onClick}
-                            disabled={item.isActive}
-                            whileHover={!item.isActive ? { scale: 1.02 } : {}}
-                            className={`px-3 py-1.5 rounded-full backdrop-blur-md bg-background/50 border border-border/10 text-sm tracking-wide shadow-sm hover:shadow-md transition-all ${item.isActive ? 'font-bold bg-background/80' : 'font-medium opacity-80 hover:opacity-100 hover:bg-background/80'} ${textColor}`}
-                        >
-                            {item.label}
-                        </motion.button>
+                        {item.href && !item.isActive ? (
+                            <Link href={item.href} passHref legacyBehavior>
+                                <motion.a
+                                    whileHover={{ scale: 1.02 }}
+                                    className={`px-3 py-1.5 rounded-full backdrop-blur-md bg-background/50 border border-border/10 text-sm tracking-wide shadow-sm hover:shadow-md transition-all font-medium opacity-80 hover:opacity-100 hover:bg-background/80 ${textColor}`}
+                                >
+                                    {item.label}
+                                </motion.a>
+                            </Link>
+                        ) : (
+                            <div
+                                className={`px-3 py-1.5 rounded-full backdrop-blur-md bg-background/50 border border-border/10 text-sm tracking-wide shadow-sm transition-all ${item.isActive ? 'font-bold bg-background/80' : 'font-medium opacity-80'} ${textColor}`}
+                            >
+                                {item.label}
+                            </div>
+                        )}
                     </motion.div>
                 ))}
             </AnimatePresence>
